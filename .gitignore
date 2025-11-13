@@ -1,0 +1,26 @@
+# ===== Node.js =====
+node_modules/
+package-lock.json
+
+# ===== Variables de entorno =====
+.env
+backend/config/config.env
+
+# ===== Logs =====
+*.log
+
+# ===== Archivos temporales =====
+*.tmp
+*.bak
+*.swp
+
+# ===== Sistema operativo =====
+.DS_Store
+Thumbs.db
+
+# ===== Base de datos local =====
+database/*.sql
+
+# ===== Otros =====
+dist/
+build/
