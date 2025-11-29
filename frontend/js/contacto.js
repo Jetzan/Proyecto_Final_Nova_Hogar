@@ -24,6 +24,7 @@ window.addEventListener('click', function(event) {
             modalIniciar.style.display = 'none';
             modalAbierto = false;
             console.log("Modal de iniciar sesión cerrado");
+
         }
     }
 });

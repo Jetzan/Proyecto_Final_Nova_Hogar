@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Nova Hogar</title>
+    <title>Contacto - Nova Hogar</title>
   </head>
   <body>
-     <script src="https://kit.fontawesome.com/5f658418e2.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/5f658418e2.js"
+      crossorigin="anonymous"
+    ></script>
     <header class="header">
       <div class="header__top">
         <div class="header__logo logo">
-          <a href="index.html" class="logo__link">
+          <a href="index.html" class="logo__link" >
             <img
               class="logo__img"
               src="assets/img/logoNovaHogar.png"
@@ -21,33 +24,39 @@
         </div>
 
         <div class="header__search search">
-          <input type="search" class="search__input" placeholder="Buscar Producto"/>
+          <input
+            type="search"
+            class="search__input"
+            placeholder="Buscar Producto"
+          />
         </div>
 
         <nav class="header__menu-categorias menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="" class="menu__link">Dormitorio</a>
+              <a href="dormitorio.html" class="menu__link">Dormitorio</a>
             </li>
             <li class="menu__item">
-              <a href="" class="menu__link">Sala</a>
+              <a href="sala.html" class="menu__link">Sala</a>
             </li>
             <li class="menu__item">
-              <a href="" class="menu__link">Comedor</a>
+              <a href="comedor.html" class="menu__link">Comedor</a>
             </li>
           </ul>
         </nav>
 
         <div class="header__carrito carrito">
-          <a href=""
+          <button href=""
             ><img src="assets/img/carrito.png" alt="" class="carrito__img"
-          /></a>
+          /></button>
+          <span class="numero--articulos">10</span>
         </div>
 
         <div class="header__user user">
-          <a href="login.html" class="user__login">Iniciar Sesión</a>
+          <a href="#" class="user__login" id="button--iniciar--sesion">Iniciar Sesión</a>
         </div>
       </div>
+
 
       <div class="header__bottom">
         <nav class="header__menu menu">
@@ -69,22 +78,64 @@
           </ul>
         </nav>
       </div>
-    </header>
+    </header> 
 
-    <main class="main-contacto">
-    
+    <main class="main--contacto">
+      <div class="main--left">
+        <h1 class="contacto--title">Contacto</h1>
+        <p class="contacto--descripcion">
+          ¡Nos encantaría saber de ti! Si tienes alguna pregunta, comentario o
+          sugerencia, no dudes en ponerte en contacto con nosotros. Estamos aquí
+          para ayudarte y brindarte la mejor experiencia de compra en Nova
+          Hogar.
+        </p>
+      </div>
+      <div class="main--right">
+        <form action="" class="form--contacto">
+          <h2 class="form--titulo">Envíanos un Mensaje</h2>
+          <div class="form--grupo">
+            <input type="text" id="input--name--contacto" placeholder=" " />
+            <label for="input--name--contacto">Nombre:</label>
+          </div>
+          <div class="form--grupo">
+            <input type="email" id="input--email--contacto" placeholder=" " />
+            <label for="input--email--contacto">Correo Electrónico:</label>
+          </div>
+          <div class="form--grupo">
+            <textarea id="input--mensaje--contacto" placeholder=" "></textarea>
+            <label for="input--mensaje--contacto">Mensaje:</label>
+          </div>
+          <input
+            type="submit"
+            value="Enviar Mensaje"
+            class="form--button--contacto"
+          />
+        </form>
+      </div>
     </main>
 
     <footer class="footer">
       <div class="footer__logo">
-        <img class="footer__logo--img" src="assets/img/logoNovaHogar.png" alt="">
+        <img
+          class="footer__logo--img"
+          src="assets/img/logoNovaHogar.png"
+          alt=""
+        />
       </div>
       <div class="footer__social">
         <ul class="list__social--networks">
-          <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
-          <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a href=""><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a href=""><i class="fa-brands fa-youtube"></i></a></li>
+          <li>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+          </li>
         </ul>
       </div>
       <div class="footer__datos">
@@ -98,11 +149,36 @@
           <a href="#">Avisos de privacidad</a>
         </div>
       </div>
-      <hr class="footer__hr">
+      <hr class="footer__hr" />
       <div class="footer__reserved">
-        <p>Todos los derechos reservados</p>
-        <p>Proyecto con fines educativos para la materia de Programación Web 5B</p>
+        <p>©Todos los derechos reservados</p>
+        <p>
+          Proyecto con fines educativos para la materia de Programación Web 5B
+        </p>
       </div>
     </footer>
+
+    <div class="modal__iniciar">
+      <img src="assets/img/logoNovaHogar.png" alt="" class="modal--logo">
+      <form class="modal--form">
+        <div>
+
+          <i class="fa-regular fa-user"></i>
+          <input type="text" id="input--name--user" placeholder=" ">
+          <label for="input--name--user"> Nombre: </label>
+        </div>
+        <div>
+
+          <i class="fa-solid fa-key"></i>
+          <input type="password" id="input--password--user" placeholder=" ">
+          <label for="input--password--user">Contraseña: </label>
+        </div>
+        <input type="submit" value="Iniciar Sesión" id="button--enviar--sesion"> 
+      </form>
+       <a href="#" class="modal--olvidaste">¿Olvidaste tu contraseña?</a>
+      <p class="modal--registrarse">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+
+    </div>
+    <script src="js/main.js"></script>
   </body>
 </html>
