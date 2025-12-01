@@ -91,11 +91,11 @@
         </p>
       </div>
       <div class="main--right">
-        <form action="" class="form--contacto">
+        <form action="" class="form--contacto" id="form--contacto">
           <h2 class="form--titulo">Envíanos un Mensaje</h2>
           <div class="form--grupo">
-            <input type="text" id="input--name--contacto" placeholder=" " />
-            <label for="input--name--contacto">Nombre:</label>
+            <input type="text" id="input--nombre--contacto" placeholder=" " />
+            <label for="input--nombre--contacto">Nombre:</label>
           </div>
           <div class="form--grupo">
             <input type="email" id="input--email--contacto" placeholder=" " />
@@ -179,6 +179,110 @@
       <p class="modal--registrarse">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
 
     </div>
+
+    <div class="modal__carrito">
+      <h2>Tu Carrito de Compras</h2>
+      <div>
+        <div class="carrito--items">
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+        </div>
+        <div class="carrito--total">
+          <h2>Detalles del pago</h2>
+
+          <div class="pago--detalle">
+            <span>Subtotal</span>
+            <span>$299</span>
+          </div>
+
+          <div class="pago--detalle">
+            <span>Envío</span>
+            <span>$120</span>
+          </div>
+
+          <div class="pago--detalle">
+            <span>Impuestos</span>
+            <span>$0</span>
+          </div>
+
+          <hr />
+
+          <h3 class="pago--total">Total: $419</h3>
+
+          <button class="carrito--checkout">Proceder al Pago</button>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js"></script>
+    <script src="js/contacto.js"></script>
   </body>
 </html>

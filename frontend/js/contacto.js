@@ -1,31 +1,33 @@
-let modalAbierto = false; // Variable para rastrear el estado del modal
+//Variables
 
-const buttonIniciarSesion = document.getElementById('button--iniciar--sesion');
+//Elementos del DOM
+const formularioContacto = document.getElementById("form--contacto");
 
+//Funciones
+function enviarFormularioContacto(event) {
+  event.preventDefault(); // Evitar el envío del formulario por defecto
 
+  const nombre = document.getElementById("input--nombre--contacto").value;
+  const email = document.getElementById("input--email--contacto").value;
+  const mensaje = document.getElementById("input--mensaje--contacto").value;
 
-function mostrarModalIniciarSesion() {
-    const modalIniciar = document.querySelector('.modal__iniciar');
-    modalIniciar.style.display = 'flex';
-    console.log("Modal de iniciar sesión mostrado");
-    modalAbierto = true;
+  const datosContacto = {
+    nombre: nombre,
+    email: email,
+    mensaje: mensaje,
+  };
+
+  console.log("Datos de contacto enviados:", datosContacto);
+
+  // Mostrar alerta de éxito usando SweetAlert2
+  Swal.fire({
+    icon: "success",
+    title: "Mensaje enviado",
+    text: "Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!",
+    confirmButtonText: "Aceptar",
+  });
 }
 
-
-buttonIniciarSesion.addEventListener('click', mostrarModalIniciarSesion);
-
-
-window.addEventListener('click', function(event) {
+//Eventos
     
-    
-    const modalIniciar = document.querySelector('.modal__iniciar');
-    if(modalAbierto){
-        if (event.target !== modalIniciar && event.target !== buttonIniciarSesion &&!modalIniciar.contains(event.target)) {
-            modalIniciar.style.display = 'none';
-            modalAbierto = false;
-            console.log("Modal de iniciar sesión cerrado");
-
-        }
-    }
-});
-
+formularioContacto.addEventListener("submit", enviarFormularioContacto);
