@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Contacto - Nova Hogar</title>
+  </head>
+  <body>
+    <script
+      src="https://kit.fontawesome.com/5f658418e2.js"
+      crossorigin="anonymous"
+    ></script>
+    <header class="header">
+      <div class="header__top">
+        <div class="header__logo logo">
+          <a href="index.html" class="logo__link" >
+            <img
+              class="logo__img"
+              src="assets/img/logoNovaHogar.png"
+              alt="Nova Hogar"
+            />
+          </a>
+        </div>
+
+        <div class="header__search search">
+          <input
+            type="search"
+            class="search__input"
+            placeholder="Buscar Producto"
+          />
+        </div>
+
+        <nav class="header__menu-categorias menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="dormitorio.html" class="menu__link">Dormitorio</a>
+            </li>
+            <li class="menu__item">
+              <a href="sala.html" class="menu__link">Sala</a>
+            </li>
+            <li class="menu__item">
+              <a href="comedor.html" class="menu__link">Comedor</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__carrito carrito">
+          <button href=""
+            ><img src="assets/img/carrito.png" alt="" class="carrito__img"
+          /></button>
+          <span class="numero--articulos">10</span>
+        </div>
+
+        <div class="header__user user">
+          <a href="#" class="user__login" id="button--iniciar--sesion">Iniciar Sesión</a>
+        </div>
+      </div>
+
+
+      <div class="header__bottom">
+        <nav class="header__menu menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="productos.html" class="menu__link">Accesibilidad</a>
+            </li>
+            <li class="menu__item">
+              <a href="contacto.html" class="menu__link">Contacto</a>
+            </li>
+            <li class="menu__item">
+              <a href="nosotros.html" class="menu__link">Sobre Nosotros</a>
+            </li>
+            <li class="menu__item">
+              <a href="preguntasFrecuentes.html" class="menu__link"
+                >Preguntas Frecuentes</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header> 
+
+    <main class="main--contacto">
+      <div class="main--left">
+        <h1 class="contacto--title">Contacto</h1>
+        <p class="contacto--descripcion">
+          ¡Nos encantaría saber de ti! Si tienes alguna pregunta, comentario o
+          sugerencia, no dudes en ponerte en contacto con nosotros. Estamos aquí
+          para ayudarte y brindarte la mejor experiencia de compra en Nova
+          Hogar.
+        </p>
+      </div>
+      <div class="main--right">
+        <form action="" class="form--contacto" id="form--contacto">
+          <h2 class="form--titulo">Envíanos un Mensaje</h2>
+          <div class="form--grupo">
+            <input type="text" id="input--nombre--contacto" placeholder=" " />
+            <label for="input--nombre--contacto">Nombre:</label>
+          </div>
+          <div class="form--grupo">
+            <input type="email" id="input--email--contacto" placeholder=" " />
+            <label for="input--email--contacto">Correo Electrónico:</label>
+          </div>
+          <div class="form--grupo">
+            <textarea id="input--mensaje--contacto" placeholder=" "></textarea>
+            <label for="input--mensaje--contacto">Mensaje:</label>
+          </div>
+          <input
+            type="submit"
+            value="Enviar Mensaje"
+            class="form--button--contacto"
+          />
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__logo">
+        <img
+          class="footer__logo--img"
+          src="assets/img/logoNovaHogar.png"
+          alt=""
+        />
+      </div>
+      <div class="footer__social">
+        <ul class="list__social--networks">
+          <li>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__datos">
+        <div class="datos--empresa">
+          <a href="">Teléfono: +52 449 123 4567</a>
+          <a href="">Email: contacto@novahogar.com</a>
+          <a href="">Ubicación: Aguascalientes, México</a>
+        </div>
+        <div class="datos--info">
+          <a href="#">Ayuda</a>
+          <a href="#">Avisos de privacidad</a>
+        </div>
+      </div>
+      <hr class="footer__hr" />
+      <div class="footer__reserved">
+        <p>©Todos los derechos reservados</p>
+        <p>
+          Proyecto con fines educativos para la materia de Programación Web 5B
+        </p>
+      </div>
+    </footer>
+
+    <div class="modal__iniciar">
+      <img src="assets/img/logoNovaHogar.png" alt="" class="modal--logo">
+      <form class="modal--form">
+        <div>
+
+          <i class="fa-regular fa-user"></i>
+          <input type="text" id="input--name--user" placeholder=" ">
+          <label for="input--name--user"> Nombre: </label>
+        </div>
+        <div>
+
+          <i class="fa-solid fa-key"></i>
+          <input type="password" id="input--password--user" placeholder=" ">
+          <label for="input--password--user">Contraseña: </label>
+        </div>
+        <input type="submit" value="Iniciar Sesión" id="button--enviar--sesion"> 
+      </form>
+       <a href="#" class="modal--olvidaste">¿Olvidaste tu contraseña?</a>
+      <p class="modal--registrarse">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+
+    </div>
+
+    <div class="modal__carrito">
+      <h2>Tu Carrito de Compras</h2>
+      <div>
+        <div class="carrito--items">
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+          <div class="carrito--item">
+            <img src="assets/img/mueble1.png" alt="" class="item--img" />
+            <div class="item--details">
+              <p class="item--name">Mueble de mármol recién cortado</p>
+              <p class="item--price">$299</p>
+              <div class="carrito--quantity">
+                <label for="quantity1">Cantidad:</label>
+                <input
+                  type="number"
+                  id="quantity1"
+                  name="quantity1"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <button class="item--remove">Eliminar</button>
+          </div>
+        </div>
+        <div class="carrito--total">
+          <h2>Detalles del pago</h2>
+
+          <div class="pago--detalle">
+            <span>Subtotal</span>
+            <span>$299</span>
+          </div>
+
+          <div class="pago--detalle">
+            <span>Envío</span>
+            <span>$120</span>
+          </div>
+
+          <div class="pago--detalle">
+            <span>Impuestos</span>
+            <span>$0</span>
+          </div>
+
+          <hr />
+
+          <h3 class="pago--total">Total: $419</h3>
+
+          <button class="carrito--checkout">Proceder al Pago</button>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contacto.js"></script>
+  </body>
+</html>
