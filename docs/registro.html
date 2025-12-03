@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Preguntas Frecuentes - Nova Hogar</title>
+    <title>Registro - Nova Hogar</title>
   </head>
   <body>
-     <script src="https://kit.fontawesome.com/5f658418e2.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/5f658418e2.js"
+      crossorigin="anonymous"
+    ></script>
     <header class="header">
       <div class="header__top">
         <div class="header__logo logo">
@@ -43,8 +46,8 @@
         </nav>
 
         <div class="header__carrito carrito">
-          <button href=""
-            ><img src="assets/img/carrito.png" alt="" class="carrito__img"
+          <button id="button--carrito"
+            ><img src="assets/img/carrito.png" alt=""  class="carrito__img"
           /></button>
           <span class="numero--articulos">10</span>
         </div>
@@ -59,7 +62,7 @@
         <nav class="header__menu menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="productos.html" class="menu__link">Accesibilidad</a>
+              <a href="#" class="menu__link" id="button--accesibilidad">Accesibilidad</a>
             </li>
             <li class="menu__item">
               <a href="contacto.html" class="menu__link">Contacto</a>
@@ -76,20 +79,76 @@
         </nav>
       </div>
     </header>
-    <main class="main-preguntas">
-    
+
+    <main class="main--registro">
+      <div class="main--left">
+        <img src="assets/img/imagenRegistro.jpg" alt="" class="registro--img" />
+      </div>
+      <div class="main--right">
+        <form action="" class="form--registro" id="form--registro">
+          <h2 class="form--titulo">Registro</h2>
+          <div class="form--grupo">
+            <input type="text" id="input--nombre--registro" placeholder=" " />
+            <label for="input--nombre--registro">Nombre:</label>
+          </div>
+          <div class="form--grupo">
+            <input type="email" id="input--email--registro" placeholder=" " />
+            <label for="input--email--registro">Correo Electrónico:</label>
+          </div>
+          <div class="form--grupo">
+            <select id="paises">
+              
+            </select>
+          </div>
+          <div class="form--grupo">
+            <input
+              type="password"
+              id="input--password--registro"
+              placeholder=" "
+            />
+            <label for="input--password--registro">Contraseña:</label>
+          </div>
+          <div class="form--grupo">
+            <input
+              type="password"
+              id="input--confirmar--password"
+              placeholder=" "
+            />
+            <label for="input--confirmar--password"
+              >Confirmar Contraseña:</label
+            >
+          </div>
+          <input type="submit" value="Registrarse" id="button--registrarse" />
+        </form>
+        <p class="form--texto--login">
+          ¿Ya tienes una cuenta?
+          <a href="#" id="button--iniciar--sesion--registro">Inicia Sesión</a>
+        </p>
+      </div>
     </main>
 
     <footer class="footer">
       <div class="footer__logo">
-        <img class="footer__logo--img" src="assets/img/logoNovaHogar.png" alt="">
+        <img
+          class="footer__logo--img"
+          src="assets/img/logoNovaHogar.png"
+          alt=""
+        />
       </div>
       <div class="footer__social">
         <ul class="list__social--networks">
-          <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
-          <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a href=""><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a href=""><i class="fa-brands fa-youtube"></i></a></li>
+          <li>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+          </li>
         </ul>
       </div>
       <div class="footer__datos">
@@ -103,10 +162,12 @@
           <a href="#">Avisos de privacidad</a>
         </div>
       </div>
-      <hr class="footer__hr">
+      <hr class="footer__hr" />
       <div class="footer__reserved">
-        <p>Todos los derechos reservados</p>
-        <p>Proyecto con fines educativos para la materia de Programación Web 5B</p>
+        <p>©Todos los derechos reservados</p>
+        <p>
+          Proyecto con fines educativos para la materia de Programación Web 5B
+        </p>
       </div>
     </footer>
 
@@ -127,9 +188,11 @@
         </div>
         <input type="submit" value="Iniciar Sesión" id="button--enviar--sesion"> 
       </form>
-       <a href="#" class="modal--olvidaste">¿Olvidaste tu contraseña?</a>
+      <a href="recuperar.html" >¿Olvidaste tu contraseña?</a>
       <p class="modal--registrarse">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
-
+        <button id="cerrar--modal--iniciar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
     <div class="modal__carrito">
       <h2>Tu Carrito de Compras</h2>
@@ -232,6 +295,39 @@
 
           <button class="carrito--checkout">Proceder al Pago</button>
         </div>
-    <script src="js/main.js"></script>  
+
+        <button id="cerrar--modal--carrito">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+     <div class="accessibility" id="accessibilityMenu">
+        <h1 class="accessibility__title">Ajustes de accesibilidad</h1>
+        <button id="cerrar--accesibilidad">
+           <i class="fa-solid fa-xmark"></i>
+        </button>
+        <p class="accessibility__label">Tamaño del texto</p> 
+        
+        <div class="accessibility__direction">
+            <span class="accessibility__icon accessibility__icon--small">A</span>
+            <input type="range" class="accessibility__slider" min="1" max="4" value="1">
+            <span class="accessibility__icon accessibility__icon--large">A</span>
+        </div>
+
+        <p class="accessibility__label">Modo oscuro</p>
+            <label class="accessibility__switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="accessibility__toggle"></span>
+        </label>
+         <h2>Ejemplo:</h2>
+      <p class="accessibility--example">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut id itaque
+        earum natus sint temporibus distinctio dicta ullam ipsum necessitatibus
+        commodi perspiciatis, nam tempora voluptate, ipsa magnam assumenda
+        cupiditate. Facilis.
+      </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/registro.js"></script>
   </body>
 </html>

@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas de ventas - Nova Hogar</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+      <div class="header__top">
+        <div class="header__logo logo">
+          <a href="index.html" class="logo__link">
+            <img
+              class="logo__img"
+              src="assets/img/logoNovaHogar.png"
+              alt="Nova Hogar"
+            />
+          </a>
+        </div>
+
+        <div class="header__search search">
+          <input
+            type="search"
+            class="search__input"
+            placeholder="Buscar Producto"
+          />
+        </div>
+
+        <nav class="header__menu-categorias menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="dormitorio.html" class="menu__link">Dormitorio</a>
+            </li>
+            <li class="menu__item">
+              <a href="sala.html" class="menu__link">Sala</a>
+            </li>
+            <li class="menu__item">
+              <a href="comedor.html" class="menu__link">Comedor</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__carrito carrito">
+          <button id="button--carrito">
+            <img src="assets/img/carrito.png" alt="" class="carrito__img" />
+          </button>
+          <span class="numero--articulos">10</span>
+        </div>
+
+        <div class="header__user user">
+          <a href="panel-admin.html">Panel de Administrador</a>
+          
+        </div>
+      </div>
+
+      <div class="header__bottom">
+        <nav class="header__menu menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="#" class="menu__link" id="button--accesibilidad">Accesibilidad</a>
+            </li>
+            <li class="menu__item">
+              <a href="contacto.html" class="menu__link">Contacto</a>
+            </li>
+            <li class="menu__item">
+              <a href="nosotros.html" class="menu__link">Sobre Nosotros</a>
+            </li>
+            <li class="menu__item">
+              <a href="preguntasFrecuentes.html" class="menu__link"
+                >Preguntas Frecuentes</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+<main class="main--consultas">
+
+
+
+    <div class="admin-page">
+        <header class="admin-page-header">
+            <div class="back-area">
+                <a href="panel-admin.html" title="Volver al panel">&#8592;</a>
+            </div>
+    
+            <div class="admin-page-header-main">
+                <div class="header-bar">PANEL DE ADMINISTRACIÓN</div>
+                <div class="subtitle">CONSULTAS DE VENTAS</div>
+            </div>
+        </header>
+    
+        <main>
+            <section class="sales-table-container">
+                <table class="sales-table">
+                    <thead>
+                        <tr>
+                            <th>Al día</th>
+                            <th>Semanal</th>
+                            <th>Mensual</th>
+                            <th>Anual</th>
+                            <th>Todo el periodo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--
+                            Aqui iran las filas cuando se implemente el back
+                        -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td>Total</td>
+                            <td>Total</td>
+                            <td>Total</td>
+                            <td>Total</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+        </main>
+    </div>
+</main>
+ <footer class="footer">
+      <div class="footer__logo">
+        <img
+          class="footer__logo--img"
+          src="assets/img/logoNovaHogar.png"
+          alt=""
+        />
+      </div>
+      <div class="footer__social">
+        <ul class="list__social--networks">
+          <li>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__datos">
+        <div class="datos--empresa">
+          <a href="">Teléfono: +52 449 123 4567</a>
+          <a href="">Email: contacto@novahogar.com</a>
+          <a href="">Ubicación: Aguascalientes, México</a>
+        </div>
+        <div class="datos--info">
+          <a href="#">Ayuda</a>
+          <a href="#">Avisos de privacidad</a>
+        </div>
+      </div>
+      <hr class="footer__hr" />
+      <div class="footer__reserved">
+        <p>©Todos los derechos reservados</p>
+        <p>
+          Proyecto con fines educativos para la materia de Programación Web 5B
+        </p>
+      </div>
+    </footer>
+
+ <div class="accessibility" id="accessibilityMenu">
+        <h1 class="accessibility__title">Ajustes de accesibilidad</h1>
+        <button id="cerrar--accesibilidad">
+           <i class="fa-solid fa-xmark"></i>
+        </button>
+        <p class="accessibility__label">Tamaño del texto</p> 
+        
+        <div class="accessibility__direction">
+            <span class="accessibility__icon accessibility__icon--small">A</span>
+            <input type="range" class="accessibility__slider" min="1" max="4" value="1">
+            <span class="accessibility__icon accessibility__icon--large">A</span>
+        </div>
+
+        <p class="accessibility__label">Modo oscuro</p>
+            <label class="accessibility__switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="accessibility__toggle"></span>
+        </label>
+         <h2>Ejemplo:</h2>
+      <p class="accessibility--example">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut id itaque
+        earum natus sint temporibus distinctio dicta ullam ipsum necessitatibus
+        commodi perspiciatis, nam tempora voluptate, ipsa magnam assumenda
+        cupiditate. Facilis.
+      </p>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
