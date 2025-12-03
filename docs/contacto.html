@@ -46,8 +46,8 @@
         </nav>
 
         <div class="header__carrito carrito">
-          <button href=""
-            ><img src="assets/img/carrito.png" alt="" class="carrito__img"
+          <button id="button--carrito"
+            ><img src="assets/img/carrito.png" alt=""  class="carrito__img"
           /></button>
           <span class="numero--articulos">10</span>
         </div>
@@ -62,7 +62,7 @@
         <nav class="header__menu menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="productos.html" class="menu__link">Accesibilidad</a>
+              <a href="#" class="menu__link" id="button--accesibilidad">Accesibilidad</a>
             </li>
             <li class="menu__item">
               <a href="contacto.html" class="menu__link">Contacto</a>
@@ -175,12 +175,14 @@
         </div>
         <input type="submit" value="Iniciar Sesión" id="button--enviar--sesion"> 
       </form>
-       <a href="#" class="modal--olvidaste">¿Olvidaste tu contraseña?</a>
+      <a href="recuperar.html" >¿Olvidaste tu contraseña?</a>
       <p class="modal--registrarse">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
-
+      <button id="cerrar--modal--iniciar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
 
-    <div class="modal__carrito">
+     <div class="modal__carrito">
       <h2>Tu Carrito de Compras</h2>
       <div>
         <div class="carrito--items">
@@ -281,6 +283,38 @@
 
           <button class="carrito--checkout">Proceder al Pago</button>
         </div>
+
+        <button id="cerrar--modal--carrito">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+     <div class="accessibility" id="accessibilityMenu">
+        <h1 class="accessibility__title">Ajustes de accesibilidad</h1>
+        <button id="cerrar--accesibilidad">
+           <i class="fa-solid fa-xmark"></i>
+        </button>
+        <p class="accessibility__label">Tamaño del texto</p> 
+        
+        <div class="accessibility__direction">
+            <span class="accessibility__icon accessibility__icon--small">A</span>
+            <input type="range" class="accessibility__slider" min="1" max="4" value="1">
+            <span class="accessibility__icon accessibility__icon--large">A</span>
+        </div>
+
+        <p class="accessibility__label">Modo oscuro</p>
+            <label class="accessibility__switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="accessibility__toggle"></span>
+        </label>
+         <h2>Ejemplo:</h2>
+      <p class="accessibility--example">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut id itaque
+        earum natus sint temporibus distinctio dicta ullam ipsum necessitatibus
+        commodi perspiciatis, nam tempora voluptate, ipsa magnam assumenda
+        cupiditate. Facilis.
+      </p>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js"></script>
     <script src="js/contacto.js"></script>

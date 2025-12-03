@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Sobre Nosotros - Nova Hogar</title>
+    <title>Preguntas Frecuentes - Nova Hogar</title>
   </head>
   <body>
      <script src="https://kit.fontawesome.com/5f658418e2.js" crossorigin="anonymous"></script>
@@ -43,8 +43,8 @@
         </nav>
 
         <div class="header__carrito carrito">
-          <button href=""
-            ><img src="assets/img/carrito.png" alt="" class="carrito__img"
+          <button id="button--carrito"
+            ><img src="assets/img/carrito.png" alt=""  class="carrito__img"
           /></button>
           <span class="numero--articulos">10</span>
         </div>
@@ -59,7 +59,7 @@
         <nav class="header__menu menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="productos.html" class="menu__link">Accesibilidad</a>
+              <a href="#" class="menu__link" id="button--accesibilidad">Accesibilidad</a>
             </li>
             <li class="menu__item">
               <a href="contacto.html" class="menu__link">Contacto</a>
@@ -76,9 +76,86 @@
         </nav>
       </div>
     </header>
+    <main class="main--preguntas">
+      <section class="ask">
+    <h1 class="ask__title">PREGUNTAS FRECUENTES</h1>
 
-    <main class="main-nosotros">
-    
+    <div class="ask__answers">
+        <!-- pregunta 1 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Porque comprar en nova hogar</h1>
+            <p class="ask__answer">Nosotros contamos con un gran catalogo en muebles que poseen una 
+                gran calidad, contamos con una variedad de beneficios que nosotros como empresa nos 
+                comprometemos a brindarlos.</p>
+            <hr class="ask__line">
+        </div>
+
+        <!-- pregunta 2 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Si mi producto llega defectuoso, ¿tengo garantía?</h1>
+            <p class="ask__answer">¡Por supuesto! Contamos con una política enfocada en garantizar tu comodidad 
+                y la calidad de nuestros productos. Cualquier artículo que llegue con defectos de fábrica o no 
+                sea entregado puede ser reemplazado por uno nuevo después de realizar la reclamación correspondiente.</p>
+            <hr class="ask__line">
+        </div>
+
+        <!-- pregunta 3 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Que métodos de pago emplean</h1>
+            <p class="ask__answer">Aceptamos una amplia variedad de métodos de pago para tu comodidad: 
+                tarjetas de crédito y débito (Visa, MasterCard y American Express), pagos por transferencia 
+                bancaria, depósitos en OXXO, así como plataformas digitales como PayPal y Mercado Pago. 
+                También ofrecemos la opción de pago contra entrega en ciertas zonas.</p>
+            <hr class="ask__line">        
+        </div>
+
+        <!-- pregunta 4 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Hacen envíos a todo el país</h1>
+            <p class="ask__answer"> Sí. En Nova Hogar realizamos envíos a cualquier parte del mundo.
+                El costo del envío puede variar según la distancia, el país de destino y 
+                el tiempo estimado de entrega.</p>
+            <hr class="ask__line">        
+        </div>
+
+        <!-- pregunta 5 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Cuánto tarda mi pedido en llegar</h1>
+            <p class="ask__answer">Nuestros tiempos de entrega varían según la ubicación del cliente.
+                En promedio, los envíos internacionales o a otras regiones suelen tardar 
+                alrededor de 7 días hábiles, mientras que los pedidos realizados dentro de la 
+                misma zona donde contamos con sucursales pueden entregarse en un plazo de hasta 24 horas.</p>
+            <hr class="ask__line">        
+        </div>
+
+        <!-- pregunta 6 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Puedo devolver o cambiar un artículo</h1>
+            <p class="ask__answer">En nuestra política de servicio permitimos el 
+                cambio de productos incluso si no presentan defectos de fábrica.
+                Esto forma parte de nuestro compromiso con el consumidor, brindando la 
+                posibilidad de realizar cambios o devoluciones dentro de un plazo máximo de 
+                3 meses a partir de la fecha de entrega del producto.</p>
+            <hr class="ask__line">               
+        </div>
+        
+        <!-- pregunta 7 -->
+        <div class="ask__item">
+            <h1 class="ask__question">Como puedo contactarlos</h1>
+            <p class="ask__answer">Puedes comunicarte con nosotros a través de 
+                varios canales según lo que te resulte más cómodo. 
+                Nuestro equipo de atención está disponible para resolver dudas, 
+                brindar asesoría o apoyar en cualquier proceso relacionado con tu compra.
+
+                También puedes visitarnos directamente en cualquiera de nuestras 
+                sucursales, donde con gusto te atenderemos de manera presencial.
+            </p>
+        </div>
+    </div>
+</section>
+
+</div>
+
     </main>
 
     <footer class="footer">
@@ -110,6 +187,7 @@
         <p>Proyecto con fines educativos para la materia de Programación Web 5B</p>
       </div>
     </footer>
+
     <div class="modal__iniciar">
       <img src="assets/img/logoNovaHogar.png" alt="" class="modal--logo">
       <form class="modal--form">
@@ -127,11 +205,13 @@
         </div>
         <input type="submit" value="Iniciar Sesión" id="button--enviar--sesion"> 
       </form>
-       <a href="#" class="modal--olvidaste">¿Olvidaste tu contraseña?</a>
+      <a href="recuperar.html" >¿Olvidaste tu contraseña?</a>
       <p class="modal--registrarse">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
-
+      <button id="cerrar--modal--iniciar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
-    <div class="modal__carrito">
+     <div class="modal__carrito">
       <h2>Tu Carrito de Compras</h2>
       <div>
         <div class="carrito--items">
@@ -232,6 +312,39 @@
 
           <button class="carrito--checkout">Proceder al Pago</button>
         </div>
-    <script src="js/main.js"></script>
+
+        <button id="cerrar--modal--carrito">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+     <div class="accessibility" id="accessibilityMenu">
+        <h1 class="accessibility__title">Ajustes de accesibilidad</h1>
+        <button id="cerrar--accesibilidad">
+           <i class="fa-solid fa-xmark"></i>
+        </button>
+        <p class="accessibility__label">Tamaño del texto</p> 
+        
+        <div class="accessibility__direction">
+            <span class="accessibility__icon accessibility__icon--small">A</span>
+            <input type="range" class="accessibility__slider" min="1" max="4" value="1">
+            <span class="accessibility__icon accessibility__icon--large">A</span>
+        </div>
+
+        <p class="accessibility__label">Modo oscuro</p>
+            <label class="accessibility__switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="accessibility__toggle"></span>
+        </label>
+         <h2>Ejemplo:</h2>
+      <p class="accessibility--example">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut id itaque
+        earum natus sint temporibus distinctio dicta ullam ipsum necessitatibus
+        commodi perspiciatis, nam tempora voluptate, ipsa magnam assumenda
+        cupiditate. Facilis.
+      </p>
+    </div>
+    <script src="js/preguntas.js"></script>
+    <script src="js/main.js"></script>  
   </body>
 </html>

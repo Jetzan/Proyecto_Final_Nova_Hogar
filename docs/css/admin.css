@@ -1,0 +1,448 @@
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-fondo: #f4e6d6;
+    --color-texto: #2b1b0b;
+    --color-cafe: #745733;
+    --color-cafe-claro: #a58b63;
+    --color-panel: #e8d7c2;
+    --color-borde-tabla: #ceb79a;
+    --color-fila-par: #f3ece4;
+    --color-fila-impar: #e4cfb6;
+    --sombra-suave: 0 4px 10px rgba(0,0,0,0.25);
+    --radio-grande: 32px;
+    --radio-total: 999px;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+/* ===== Utilidades generales ===== */
+
+.admin-wrapper,
+.panel-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.card,
+.panel-card,
+.modal-card {
+    background: var(--color-cafe-claro);
+    border-radius: var(--radio-grande);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    padding: 32px 40px 40px;
+    width: min(640px, 100%);
+    position: relative;
+}
+
+.back-area {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.back-area a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 22px;
+}
+
+/* Títulos */
+
+.card-title {
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    margin: 18px 0 32px;
+    font-size: 20px;
+}
+
+/* Inputs y botones */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.input-field,
+.search-input,
+.modal-input {
+    width: 100%;
+    border-radius: var(--radio-total);
+    border: none;
+    padding: 9px 18px;
+    font-size: 14px;
+    outline: none;
+    background: #ffffff;
+}
+
+.primary-btn,
+.secondary-btn,
+.danger-btn,
+.panel-option-btn {
+    display: inline-block;
+    border-radius: var(--radio-total);
+    border: none;
+    padding: 10px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+.primary-btn,
+.panel-option-btn {
+    background: var(--color-cafe);
+    color: #ffffff;
+}
+
+.secondary-btn {
+    background: var(--color-fondo);
+    color: #533015;
+}
+
+.danger-btn {
+    background: #c0392b;
+    color: #ffffff;
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.danger-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+}
+
+/* ===== Panel principal ===== */
+
+.panel-wrapper {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.panel-card .back-area {
+    top: 20px;
+    left: 24px;
+}
+
+.panel-header-bar {
+    width: 100%;
+    background: var(--color-cafe);
+    border-radius: var(--radio-total);
+    padding: 13px 24px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 6px auto 40px;
+    text-transform: uppercase;
+}
+
+.panel-options {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+}
+
+.panel-option-btn {
+    width: 70%;
+    max-width: 360px;
+}
+
+/* ===== Páginas internas (productos, gráficas, consultas) ===== */
+
+.admin-page {
+    min-height: 100vh;
+    background: var(--color-panel);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Toda la parte superior café */
+.admin-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-cafe);
+    color: #ffffff;
+    padding: 16px 32px;
+    box-shadow: var(--sombra-suave);
+}
+
+.admin-page-header .back-area {
+    position: static;
+    margin-right: 18px;
+}
+
+.admin-page-header-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.header-bar {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.search-box {
+    max-width: 260px;
+    margin-left: 24px;
+}
+
+.admin-page-header .search-input {
+    background: #f3e6d5;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+}
+
+.admin-page main {
+    padding: 24px 32px 40px;
+}
+
+/* ===== Tablas ===== */
+
+.table-container,
+.sales-table-container {
+    margin: 0 auto;
+    max-width: 960px;
+    overflow-x: auto;
+    background: #f1e6d7;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.products-table,
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.products-table th,
+.products-table td,
+.sales-table th,
+.sales-table td {
+    border: 1px solid var(--color-borde-tabla);
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.products-table th,
+.sales-table th,
+.sales-table tfoot td {
+    background: #d9b995;
+    font-weight: 700;
+}
+
+.products-table tbody tr:nth-child(even),
+.sales-table tbody tr:nth-child(even) {
+    background: var(--color-fila-par);
+}
+
+.products-table tbody tr:nth-child(odd),
+.sales-table tbody tr:nth-child(odd) {
+    background: var(--color-fila-impar);
+}
+
+.manage-bar {
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* ===== Modal gestionar productos ===== */
+
+.modal-overlay,
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 50;
+}
+
+#gestion-productos:target,
+#confirmar-eliminar:target {
+    display: flex;
+}
+
+.modal-title {
+    text-align: center;
+    margin: 14px 0 24px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* Tabs ALTA / BAJA / CAMBIO */
+
+.tab-radio {
+    display: none;
+}
+
+.tab-label {
+    padding: 8px 22px;
+    border-radius: var(--radio-total);
+    background: var(--color-cafe);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    color: #ffffff;
+    user-select: none;
+    margin-right: 6px;
+}
+
+#tab-alta:checked + label[for="tab-alta"],
+#tab-baja:checked + label[for="tab-baja"],
+#tab-cambio:checked + label[for="tab-cambio"] {
+    background: #86a11f;
+}
+
+.tab-contents {
+    margin-top: 10px;
+}
+
+.tab-content {
+    display: none;
+    margin-top: 8px;
+}
+
+#tab-alta:checked ~ .tab-contents .tab-alta,
+#tab-baja:checked ~ .tab-contents .tab-baja,
+#tab-cambio:checked ~ .tab-contents .tab-cambio {
+    display: block;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+}
+
+.form-grid .full {
+    grid-column: 1 / -1;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Confirmación eliminar */
+
+.confirm-card {
+    background: #f5ede3;
+    border-radius: 20px;
+    padding: 24px 26px 22px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    color: var(--color-texto);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+/* ===== Gráfica de ventas ===== */
+
+.chart-area {
+    max-width: 780px;
+    margin: 32px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-placeholder {
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    border: 16px solid #ffffff;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(#f4e6d6 0deg 360deg);
+    color: #555555;
+    text-align: center;
+    padding: 24px;
+    font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 768px) {
+    .admin-page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .admin-page-header-main {
+        flex: none;
+    }
+
+    .search-box {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .admin-page main {
+        padding: 20px;
+    }
+
+    .card,
+    .panel-card,
+    .modal-card {
+        padding: 26px 20px 28px;
+    }
+
+    .panel-option-btn {
+        width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
