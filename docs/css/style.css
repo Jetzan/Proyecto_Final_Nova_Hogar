@@ -2001,7 +2001,52 @@ body.dark-mode .accessibility__label {
     
 }
 
+.modal__suscribirse{
+    z-index: 3;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #2B1C14;
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    align-items: center;
+    justify-content: center;
+}
 
+.suscribirse__text{
+    font-family: "Aptos", Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    margin: 1rem;
+}
+
+.suscribirse__correo{
+  background-color: white;
+  text-align: center;
+ padding-left: .8rem;
+padding-right: .8rem;
+padding-top: .2rem;
+padding-bottom: .2rem;
+font-size: 1rem;
+border-radius: 10px;
+
+}
+
+.suscribirse__enviar{
+    background-color: white;
+    font-size: .9rem;
+    margin-top: 1rem;
+    border-radius: 15px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: .1rem;
+    padding-top: .1rem ;
+    border: none;
+    background-color: ;
+}
 /*
     font-family: "Calibri", sans-serif;
     font-family: "Aptos", Arial, Helvetica, sans-serif;
