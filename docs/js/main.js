@@ -3,8 +3,7 @@ let modalCarritoAbierto = false;
 let modalAccesibilidadAbierto = false;
 let cuentaLogeada = false;
 
-
-const API_URL = 'https://backend-final-o904.onrender.com/api';
+const API_URL = "https://backend-final-o904.onrender.com/api";
 
 //Elementos del DOM
 
@@ -23,14 +22,13 @@ const buttonCerrarModalCarrito = document.getElementById(
 
 //Mostrar modal carrito
 function mostrarModalCarrito() {
-
-  if(!cuentaLogeada){
-  Swal.fire({
-  icon: "warning",
-  title: "¡Atención!",
-  text: "Debes iniciar sesión para ver tu carrito",
-  confirmButtonText: "Aceptar",
-});
+  if (!cuentaLogeada) {
+    Swal.fire({
+      icon: "warning",
+      title: "¡Atención!",
+      text: "Debes iniciar sesión para ver tu carrito",
+      confirmButtonText: "Aceptar",
+    });
     return;
   }
 
@@ -196,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // REQUEST AL BACKEND
-      const res = await fetch(API_URL+"/auth/login", {
+      const res = await fetch(API_URL + "/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, password }),
@@ -233,7 +231,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // CERRAR MODAL
       modalLogin.style.display = "none";
 
-      alert("Inicio de sesión exitoso");
+      cuentaLogeada = true;
+
+      Swal.fire({
+        icon: "success",
+        title: "Inicio de sesión exitoso",
+        text: "Bienvenido!",
+        timer: 1800,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error login:", error);
       alert("Error de conexión con el servidor");
@@ -377,52 +383,85 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==============================
 
   async function cargarProductos() {
-     try {
-        // Cargar productos de dormitorio
-        const dormitorioRes = await fetch(`${API_URL}/products/dormitorios`);
-        const dormitorios = await dormitorioRes.json();
-        displayProducts(dormitorios, 0);
-        
-        // Cargar productos de sala
-        const salaRes = await fetch(`${API_URL}/products/salas`);
-        const salas = await salaRes.json();
-        displayProducts(salas, 1);
-        
-        // Cargar productos de comedor
-        const comedorRes = await fetch(`${API_URL}/products/comedores`);
-        const comedores = await comedorRes.json();
-        displayProducts(comedores, 2);
-    } catch (error) {
-        console.error('Error al cargar productos:', error);
-    }
-}
+    try {
+      // Cargar productos de dormitorio
+      const dormitorioRes = await fetch(`${API_URL}/products/dormitorios`);
+      const dormitorios = await dormitorioRes.json();
+      displayProducts(dormitorios, 0);
 
-function displayProducts(productos, categoryIndex) {
-    const categorias = document.querySelectorAll('.categoria--muebles');
+      // Cargar productos de sala
+      const salaRes = await fetch(`${API_URL}/products/salas`);
+      const salas = await salaRes.json();
+      displayProducts(salas, 1);
+
+      // Cargar productos de comedor
+      const comedorRes = await fetch(`${API_URL}/products/comedores`);
+      const comedores = await comedorRes.json();
+      displayProducts(comedores, 2);
+    } catch (error) {
+      console.error("Error al cargar productos:", error);
+    }
+  }
+
+  function displayProducts(productos, categoryIndex) {
+    const categorias = document.querySelectorAll(".categoria--muebles");
     if (!categorias[categoryIndex]) return;
-    
-    const grid = categorias[categoryIndex].querySelector('.productos--grid');
-    
+
+    const grid = categorias[categoryIndex].querySelector(".productos--grid");
+
     // Mostrar solo los primeros 3 productos
     const productosLimitados = productos.slice(0, 3);
-    
-    grid.innerHTML = productosLimitados.map(producto => `
+
+    grid.innerHTML = productosLimitados
+      .map(
+        (producto) => `
         <div class="producto--card" data-product-id="${producto.id}">
-            <img class="mueble--img" src="${producto.url_imagen || 'assets/img/mueble1.png'}" alt="${producto.nombre}" />
+            <img class="mueble--img" src="${
+              producto.url_imagen_principal || "assets/img/mueble1  "
+            }" alt="${producto.nombre}" />
             <p class="mueble--descripcion">${producto.nombre}</p>
-            <p class="mueble--precio">$${parseFloat(producto.precio).toFixed(2)}</p>
-            <button class="mueble--agregar" data-product-id="${producto.id}">Agregar a carrito</button>
+            <p class="mueble--precio">$${parseFloat(producto.precio).toFixed(
+              2
+            )}</p>
+            <button class="mueble--agregar" data-product-id="${
+              producto.id
+            }">Agregar a carrito</button>
         </div>
-    `).join('');
-    
+    `
+      )
+      .join("");
+
     // Agregar event listeners a botones
-    grid.querySelectorAll('.mueble--agregar').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productId = e.target.dataset.productId;
-            addToCart(productId);
-        });
+    grid.querySelectorAll(".mueble--agregar").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const productId = e.target.dataset.productId;
+        addToCart(productId);
+      });
     });
   }
   cargarProductos();
 });
 
+const buttonSuscribirse = document.getElementById("button--suscribirse");
+
+buttonSuscribirse.addEventListener("click", () => {
+  if (cuentaLogeada) {
+    Swal.fire({
+      title: "¡Suscripcion exitosa",
+      text: "Gracias por suscribirse",
+      icon: "succes",
+      confirmButtonText: "Aceptar",
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  } else {
+    Swal.fire({
+      title: "Atención",
+      text: "Debes iniciar sesion para suscribirte",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  }
+});

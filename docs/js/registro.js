@@ -145,7 +145,37 @@ formRegistro.addEventListener("submit", async (e) => {
         pais
     };
 
+    const token = grecaptcha.getResponse();
+    if (!token) {
+        alert("Por favor valida el captcha.");
+        return;
+    }
+
     try {
+        const res = await fetch(`${API}/api/auth/captcha`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" // IMPORTANTE
+            },
+            body: JSON.stringify({
+                recaptchaToken: token   // ← Solo se manda un string
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.responseCode === 0) {
+            formAlta.reset();
+            grecaptcha.reset();
+        }
+    } catch (err) {
+        console.error("Error de conexión:", err);
+        return;
+    
+    }
+
+    try {
+      
         const response = await fetch(API+"/api/auth/newUser", {
             method: "POST",
             headers: {
