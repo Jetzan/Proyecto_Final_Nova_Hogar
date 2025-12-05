@@ -1,33 +1,44 @@
-//Variables
+document.getElementById("form--contacto").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-//Elementos del DOM
-const formularioContacto = document.getElementById("form--contacto");
+  const nombre = document.getElementById("input--nombre--contacto").value.trim();
+  const correo = document.getElementById("input--email--contacto").value.trim();
+  const mensaje = document.getElementById("input--mensaje--contacto").value.trim();
 
-//Funciones
-function enviarFormularioContacto(event) {
-  event.preventDefault(); // Evitar el envío del formulario por defecto
+  // Validación básica
+  if (!nombre || !correo || !mensaje) {
+    alert("Por favor llena todos los campos");
+    return;
+  }
 
-  const nombre = document.getElementById("input--nombre--contacto").value;
-  const email = document.getElementById("input--email--contacto").value;
-  const mensaje = document.getElementById("input--mensaje--contacto").value;
+  try {
+    const response = await fetch("https://backend-final-o904.onrender.com/api/contact/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre,
+        correo,
+        mensaje,
+      }),
+    });
 
-  const datosContacto = {
-    nombre: nombre,
-    email: email,
-    mensaje: mensaje,
-  };
+    const data = await response.json();
 
-  console.log("Datos de contacto enviados:", datosContacto);
+    if (!response.ok) {
+      alert(data.error || "Error al enviar mensaje");
+      return;
+    }
 
-  // Mostrar alerta de éxito usando SweetAlert2
-  Swal.fire({
-    icon: "success",
-    title: "Mensaje enviado",
-    text: "Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!",
-    confirmButtonText: "Aceptar",
-  });
-}
+    // Éxito
+    alert(data.mensaje);
 
-//Eventos
-    
-formularioContacto.addEventListener("submit", enviarFormularioContacto);
+    // Limpia formulario
+    document.getElementById("form--contacto").reset();
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error enviando mensaje");
+  }
+});
