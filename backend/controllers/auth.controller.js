@@ -11,6 +11,7 @@ const loginAttempts = new Map();
 
 exports.login = async (req, res) => {
     const { nombre, password } = req.body;
+    console.log(nombre+","+password);
 
     if (!nombre || !password) {
         return res.status(400).json({
@@ -30,6 +31,9 @@ exports.login = async (req, res) => {
 
     const user = await UserModel.getUserForLogin(nombre);
 
+
+    console.log(user);
+
     if (!user) {
         registrarIntentoFallido(nombre);
         return res.status(401).json({ error: "Credenciales inválidas" });
@@ -37,7 +41,8 @@ exports.login = async (req, res) => {
 
     // Verificar contraseña hasheada
     const passwordMatch = await bcrypt.compare(password, user.passwd);
-
+    console.log(password+","+user.passwd);
+    console.log(passwordMatch);
     if (!passwordMatch) {
         registrarIntentoFallido(nombre);
         const intentos = loginAttempts.get(nombre)?.intentos || 0;
@@ -212,3 +217,5 @@ exports.resetPassword = async (req, res) => {
         return res.status(500).json({ error: 'Error interno' });
     }
 };
+
+
