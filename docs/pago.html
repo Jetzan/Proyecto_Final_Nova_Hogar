@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Sobre Nosotros - Nova Hogar</title>
-  </head>
-  <body>
-    <script
-      src="https://kit.fontawesome.com/5f658418e2.js"
-      crossorigin="anonymous"
-    ></script>
-    <header class="header">
+    <title>Pago - Nova Hogar</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="header">
       <div class="header__top">
         <div class="header__logo logo">
           <a href="index.html" class="logo__link">
@@ -86,158 +83,145 @@
         </nav>
       </div>
     </header>
+    <main class="main--pago">
 
-    <main class="main--nosotros">
-      <section class="aboutUs">
-        <h1 class="aboutUs__title">SOBRE NOSOTROS</h1>
-
-        <hr class="aboutUs__line" />
-
-        <section class="aboutUs__content">
-          <!-- QUIÉNES SOMOS -->
-          <section class="aboutUs__section">
-            <h2 class="aboutUs__subtitle">Quiénes Somos</h2>
-            <p class="aboutUs__text">
-              En Nova Hogar somos una tienda dedicada a ofrecer muebles de
-              calidad, diseño moderno y soluciones funcionales para transformar
-              cualquier espacio. Creemos que un hogar debe ser un lugar cómodo,
-              acogedor y a tu estilo.
-            </p>
-          </section>
-
-          <!-- MISIÓN -->
-          <section class="aboutUs__section">
-            <h2 class="aboutUs__subtitle">Misión</h2>
-            <p class="aboutUs__text">
-              Brindar a nuestros clientes muebles duraderos, estéticos y
-              accesibles, combinando diseño, calidad y servicio personalizado
-              para crear espacios llenos de confort y estilo.
-            </p>
-          </section>
-
-          <!-- VISIÓN -->
-          <section class="aboutUs__section">
-            <h2 class="aboutUs__subtitle">Visión</h2>
-            <p class="aboutUs__text">
-              Convertirnos en la tienda líder en muebles para el hogar,
-              reconocida por nuestra innovación, variedad de estilos y
-              compromiso con la satisfacción del cliente.
-            </p>
-          </section>
-
-          <!-- VALORES -->
-          <section class="aboutUs__section">
-            <h2 class="aboutUs__subtitle">Nuestros Valores</h2>
-            <ul class="aboutUs__list">
-              <li>Calidad en cada producto</li>
-              <li>Compromiso con nuestros clientes</li>
-              <li>Honestidad y transparencia</li>
-              <li>Innovación en diseño y materiales</li>
-              <li>Responsabilidad y cuidado del ambiente</li>
-            </ul>
-          </section>
-
-          <!-- HISTORIA -->
-          <section class="aboutUs__section">
-            <h2 class="aboutUs__subtitle">Nuestra Historia</h2>
-            <p class="aboutUs__text">
-              Nova Hogar nació con la idea de ofrecer muebles modernos y
-              funcionales para todas las personas que buscan transformar su
-              hogar con estilo. Desde nuestros primeros modelos, hemos crecido
-              gracias a la confianza de nuestros clientes que buscan calidad y
-              diseño en un solo lugar.
-            </p>
-          </section>
-
-          <!-- COMPROMISO -->
-          <section class="aboutUs__section">
-            <h2 class="aboutUs__subtitle">Nuestro Compromiso</h2>
-            <p class="aboutUs__text">
-              Trabajamos día a día para ofrecer una experiencia confiable,
-              segura y agradable, desde la elección de cada producto hasta la
-              entrega final en tu hogar.
-            </p>
-          </section>
-        </section>
-
-        <div class="aboutUs__info">
-          <h2>Intregrantes: </h2>
-          <!-- 1er integrante -->
-          <div class="card aboutUs__card">
-            <div class="card__texts">
-              <p class="card__text">Jetzan Esquivel</p>
-              <hr class="card__line" />
-              <p class="card__text card__text--Slim">
-                Soy un desarrollador en formación que estudia Ingeniería en
-                Sistemas Computacionales en la Universidad Autónoma de
-                Aguascalientes. Trabajo con desarrollo web utilizando React,
-                Node.js, Express y MySQL, y tengo interés en redes,
-                ciberseguridad, Docker y virtualización.
-                <br />Me considero una persona autodidacta, responsable y
-                orientada a crear soluciones funcionales y bien estructuradas.
-              </p>
-            </div>
-
-            <img src="assets/img/imgJetzan.jpeg" class="card__image" />
+      <div class="PaginaPago">
+          <!--mitad centrada en el mostrar los productos que fueron agregados en el carrito-->
+          <div class="productoListado">
+  
+              <h1 class="productoListado__title">Lista de productos</h1>
+  
+              <div class="productInfo">
+                  <img src="" class="productInfo__image">
+                  <p class="productInfo__infoName">tabla de roble o algo asi</p>
+                  <p class="productInfo__infoPrice">100pesos</p>
+                  <!--La idea es que aqui esten en linea todos los productos que fueron comprados, nose bien como implementar eso, quiza una logica similar al carrito de compras-->
+              </div>
+              <p class="productoListado__price">El total de su compra es</p>
           </div>
-
-          <!-- 2do integrante -->
-          <div class="card aboutUs__card">
-            <div class="card__texts">
-              <p class="card__text">Hugo Delgado</p>
-              <hr class="card__line" />
-              <p class="card__text card__text--Slim">
-                Soy estudiante de Ingeniería en Sistemas Computacionales en la Universidad Autónoma de Aguascalientes y un gran seguidor del cine y las series de televisión. Me gusta explorar cómo la tecnología y el entretenimiento se mezclan para crear nuevas experiencias para los espectadores.
-              </p>
-            </div>
-
-            <img src="assets/img/imgHugo.png" class="card__image" />
+  
+          <div class="interfazPago">
+              <h1 class="interfazPago__title">Metodos de pago</h1>
+              
+              <hr class="interfazPago__line">
+  
+              <p class="interfazPago__explain">Estamos agradecidos por su 
+                  preferencia en muebles, el ultimo paso para el disfrute 
+                  es que pague sus productos seleccionados del carrito.</p>
+              
+              <button class="interfazPago__button interfazPago__button--tarjeta">Paga con tarjeta</button>
+              <div class="cardPayment hidden">
+                  
+                <p class="cardPayment__title">datos de contacto</p>
+                <hr class="cardPayment__line">
+  
+                        <!--boton deL correo-->
+                  <p class="cardPayment__text CardPayment__text--start" > Correo electronico</p>
+                  <input  type="text"
+                          class="cardPayment__input cardPayment__mail"
+                          placeholder="email*">
+                <!--boton deL nombre-->
+                  <p class="cardPayment__text CardPayment__text--start"> Nombre</p>
+                  <input  type="text"
+                          class="cardPayment__input cardPayment__name"
+                          size="4"
+                          placeholder="nombre*">
+                <!--boton deL apellido-->
+                  <p class="cardPayment__text CardPayment__text--start" > Apellido</p>
+                  <input  type="text"
+                          class="cardPayment__input cardPayment__surname"
+                          placeholder="apellidos*">
+                <!--boton deL telefono-->
+                  <p class="cardPayment__text CardPayment__text--start"> Telefono</p>
+                  <input  type="text"
+                          class="cardPayment__input cardPayment__phone"
+                          placeholder="Num. Telefono*">
+                
+                <hr class="cardPayment__line">
+                <p class="cardPayment__title">datos de tarjeta</p>          
+                <hr class="cardPayment__line">
+                <!--boton del numero de tarjeta-->
+                  <p class="cardPayment__text CardPayment__text--start">Introduce los numeros de tu tarjeta</p>
+                  <input  type="text" 
+                          class="cardPayment__input cardPayment__number " 
+                          pattern="\d{16}"
+                          placeholder="XXXX XXXX XXXX XXXX">
+                <!--boton de fecha de expiracion-->
+                  <p class="cardPayment__text CardPayment__text--start">Introduce la fecha de expiracion</p>
+                  <input  type="text" 
+                          class="cardPayment__input cardPayment__expire"
+                          placeholder="MM/AA">
+                  <!--boton deL codigo de seguridad-->
+                  <p class="cardPayment__text CardPayment__text--start">Introduce tu codiugo de seguridad </p>
+                  <input  type="text" 
+                          class="cardPayment__input cardPayment__security"
+                          placeholder="***">
+                  
+                  <button class="cardPayment__submit"> Confirmar pago </button>
+              
+              </div>
+  
+          <button class="interfazPago__button interfazPago__button--transferencia">Paga con transferencia</button>
+          <div class="transferPayment hidden">
+  
+          <p class="transferPayment__title">Datos de contacto</p>
+          <hr class="transferPayment__line">
+  
+          <!-- Botón del correo -->
+          <p class="transferPayment__text transferPayment__text--start">Correo electrónico</p>
+          <input type="text"
+                class="transferPayment__input transferPayment__mail"
+                placeholder="email*">
+  
+          <!-- Botón del nombre -->
+          <p class="transferPayment__text transferPayment__text--start">Nombre</p>
+          <input type="text"
+                class="transferPayment__input transferPayment__name"
+                placeholder="nombre*">
+  
+          <!-- Botón del apellido -->
+          <p class="transferPayment__text transferPayment__text--start">Apellido</p>
+          <input type="text"
+                 class="transferPayment__input transferPayment__surname"
+                 placeholder="apellidos*">
+  
+                 <hr class="transferPayment__line">
+          <p class="transferPayment__title">Datos de transferencia</p>               
+                 <hr class="transferPayment__line">
+  
+          <p class="transferPayment__text transferPayment__text--start">Banco del destino</p>
+          <input  type="text"
+                  class="transferPayment__input transferPayment__destinyBank"
+                  placeholder="Banco de destino">
+  
+          <p class="transferPayment__text transferPayment__text--start">Numero de cuenta</p>
+          <input type="text"
+                  class="transferPayment__input transferPayment__countNumber"
+                  placeholder="Numero de cuenta">
+  
+          <p class="transferPayment__text transferPayment__text--start">Monto a transferir</p>
+          <input type="text"
+                  class="transferPayment__input transferPayment__transferMount"
+                  placeholder="Monto a transferir">
+  
+          <button class="transPayment__submit"> Confirmar transferencia </button>
+  
+                </div>
+  
+              <button class="interfazPago__button interfazPago__button--oxxo">Paga en Oxxo</button>
+              <div class="oxxoPayment hidden">
+                <img src="img\oxxo.png" class="oxxoPayment__img">
+                <p class="oxxoPayment__advise"> Tu recibo de compra deberia haberse descargado.</p>
+                <p class="oxxoPayment__advise">llevalo a tu sucursal mas cercana</p>
+              </div>
+  
           </div>
-
-          <!-- 3ro integrante -->
-          <div class="card aboutUs__card">
-            <div class="card__texts">
-              <p class="card__text">Angel Ovalle</p>
-              <hr class="card__line" />
-              <p class="card__text card__text--Slim">
-                Soy estudiante de Ingeniería en Sistemas Computacionales en formación. Aunque mi principal enfoque es la informática, también cuento con habilidades en diseño, especialmente en la selección de colores y la composición de elementos para crear páginas web atractivas y llamativas para los usuarios.
-
-                <br>Mi objetivo es dominar tanto el diseño web como la programación en general, de modo que pueda aplicar ambas competencias en proyectos personales y prepararme para desempeñarme de manera competitiva en el futuro.
-              </p>
-            </div>
-            <img src="assets/img/imgAngel.jpg" class="card__image" />
-          </div>
-
-          <!-- 4to integrante -->
-          <div class="card aboutUs__card">
-            <div class="card__texts">
-              <p class="card__text">Joshua Alexander</p>
-              <hr class="card__line" />
-              <p class="card__text card__text--Slim">
-              Soy estudiante de Ingeniería en Sistemas Computacionales con interés en ciberseguridad e innovación tecnológica. Tengo experiencia en uso de Linux y un poco conocimiento en scripting,  así como en el manejo de bases de datos locales y en la nube. Me enfoco en seguir aprendiendo y seguir mejorando en el mundo tecnológico
-              </p>
-            </div>
-
-            <img src="assets/img/imgJoshua.jpg" class="card__image" />
-          </div>
-
-          <!-- 5to integrante -->
-          <div class="card aboutUs__card">
-            <div class="card__texts">
-              <p class="card__text">Ángel Ricardo</p>
-              <hr class="card__line" />
-              <p class="card__text card__text--Slim">
-              estudiante de Ingeniería en Sistemas Computacionales con interés en el desarrollo de aplicaciones en Android Studio y en el área de finanzas. Tengo experiencia en la realización de proyectos en entornos moviles. Me enfoco en seguir aprendiendo y mejorando continuamente en el sector tecnológico
-              </p>
-            </div>
-
-            <img src="assets/img/imgRicardo.jpg" class="card__image" />
-          </div>
-        </div>
-      </section>
+  
+      </div>
     </main>
 
-    <footer class="footer">
+
+     <footer class="footer">
       <div class="footer__logo">
         <img
           class="footer__logo--img"
@@ -274,12 +258,13 @@
       </div>
       <hr class="footer__hr" />
       <div class="footer__reserved">
-        <p>Todos los derechos reservados</p>
+        <p>©Todos los derechos reservados</p>
         <p>
           Proyecto con fines educativos para la materia de Programación Web 5B
         </p>
       </div>
     </footer>
+
     <div class="modal__iniciar">
       <img src="assets/img/logoNovaHogar.png" alt="" class="modal--logo" />
       <form class="modal--form">
@@ -307,6 +292,7 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
+
     <div class="modal__carrito">
       <h2>Tu Carrito de Compras</h2>
       <div>
@@ -414,25 +400,32 @@
         </button>
       </div>
     </div>
-     <div class="accessibility" id="accessibilityMenu">
-        <h1 class="accessibility__title">Ajustes de accesibilidad</h1>
-        <button id="cerrar--accesibilidad">
-           <i class="fa-solid fa-xmark"></i>
-        </button>
-        <p class="accessibility__label">Tamaño del texto</p> 
-        
-        <div class="accessibility__direction">
-            <span class="accessibility__icon accessibility__icon--small">A</span>
-            <input type="range" class="accessibility__slider" min="1" max="4" value="1">
-            <span class="accessibility__icon accessibility__icon--large">A</span>
-        </div>
+    <div class="accessibility" id="accessibilityMenu">
+      <h1 class="accessibility__title">Ajustes de accesibilidad</h1>
+      <button id="cerrar--accesibilidad">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <p class="accessibility__label">Tamaño del texto</p>
 
-        <p class="accessibility__label">Modo oscuro</p>
-            <label class="accessibility__switch">
-            <input type="checkbox" id="darkModeToggle">
-            <span class="accessibility__toggle"></span>
-        </label>
-         <h2>Ejemplo:</h2>
+      <div class="accessibility__direction">
+        <span class="accessibility__icon accessibility__icon--small">A</span>
+        <input
+          type="range"
+          class="accessibility__slider"
+          min="1"
+          max="4"
+          value="1"
+        />
+        <span class="accessibility__icon accessibility__icon--large">A</span>
+      </div>
+
+      <p class="accessibility__label">Modo oscuro</p>
+      <label class="accessibility__switch">
+        <input type="checkbox" id="darkModeToggle" />
+        <span class="accessibility__toggle"></span>
+      </label>
+      
+      <h2>Ejemplo:</h2>
       <p class="accessibility--example">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut id itaque
         earum natus sint temporibus distinctio dicta ullam ipsum necessitatibus
@@ -440,6 +433,7 @@
         cupiditate. Facilis.
       </p>
     </div>
-    <script src="js/main.js"></script>
-  </body>
+
+<script src="js/pago.js"></script>
+</body>
 </html>
