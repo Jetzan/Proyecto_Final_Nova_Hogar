@@ -1,13 +1,10 @@
 //Variables
-let modalAbierto = false; // Variable para rastrear el estado del modal
 let modalCarritoAbierto = false;
 let modalAccesibilidadAbierto = false;
 
 
 //Elementos del DOM
 
-// Seleccionar el botón de iniciar sesión
-const buttonIniciarSesion = document.getElementById("button--iniciar--sesion");
 
 //Seleccionar el botón de cerrar modal iniciar sesión
 const buttonCerrarModalIniciar = document.getElementById(
@@ -22,17 +19,7 @@ const buttonCerrarModalCarrito = document.getElementById(
   "cerrar--modal--carrito"
 );
 
-//Seleccionar el modal de iniciar seison
-const modalIniciar = document.querySelector(".modal__iniciar");
 
-//Funciones
-
-function mostrarModalIniciarSesion() {
-  const modalIniciar = document.querySelector(".modal__iniciar");
-  modalIniciar.style.display = "flex";
-  console.log("Modal de iniciar sesión mostrado");
-  modalAbierto = true;
-}
 
 //Mostrar modal carrito
 function mostrarModalCarrito() {
@@ -50,31 +37,8 @@ function cerrarModalCarrito() {
   modalCarritoAbierto = false;
 }
 
-function cerrarModalIniciarSesion() {
-  modalIniciar.style.display = "none";
-  modalAbierto = false;
-  console.log("Modal de iniciar sesión cerrado");
-}
-
-//Eventos
-buttonIniciarSesion.addEventListener("click", mostrarModalIniciarSesion);
-buttonCerrarModalIniciar.addEventListener("click", cerrarModalIniciarSesion);
-
 buttonCarrito.addEventListener("click", mostrarModalCarrito);
 buttonCerrarModalCarrito.addEventListener("click", cerrarModalCarrito);
-
-window.addEventListener("click", function (event) {
-  if (modalAbierto) {
-    if (
-      event.target !== modalIniciar &&
-      event.target !== buttonIniciarSesion &&
-      !modalIniciar.contains(event.target)
-    ) {
-      cerrarModalIniciarSesion();
-    }
-  }
-});
-
 
 
 
@@ -95,6 +59,12 @@ toggle.addEventListener("change", () => {
 
   }
 });
+
+
+
+
+
+
 
 // Mostrar/ocultar menú
 const menu = document.getElementById("accessibilityMenu");
@@ -147,3 +117,284 @@ slider.addEventListener('input', () => {
       
     }
   });
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnAbrirLogin = document.getElementById("button--iniciar--sesion");
+    const modalLogin = document.querySelector(".modal__iniciar");
+    const btnCerrarModalLogin = document.getElementById("cerrar--modal--iniciar");
+    const formLogin = document.querySelector(".modal--form");
+
+    const contenedorLoged = document.querySelector(".user--loged");
+    const textoNombre = document.querySelector(".nombre--user");
+    const btnCerrarSesion = document.querySelector(".button--cerrar--sesion");
+    const btnPanelAdmin = document.querySelector(".user--loged a[href='panel-admin.html']");
+
+    /* ---------------------------
+       FUNCIONES PARA LA SESIÓN
+    ---------------------------- */
+
+    function mostrarSesion(userData) {
+        // Ocultar "Iniciar sesión"
+        btnAbrirLogin.style.display = "none";
+
+        // Mostrar contenedor logeado
+        contenedorLoged.style.display = "flex";
+
+        // Nombre
+        textoNombre.textContent = userData.nombre;
+
+        // Mostrar botón admin solo si rol = admin
+        if (userData.rol === "admin") {
+            btnPanelAdmin.style.display = "block";
+        } else {
+            btnPanelAdmin.style.display = "none";
+        }
+    }
+
+    function ocultarSesion() {
+        btnAbrirLogin.style.display = "block";
+        contenedorLoged.style.display = "none";
+    }
+
+    /* ---------------------------------------------------------
+        ✔ REVISAR SESIÓN AL CARGAR LA PÁGINA (LO QUE FALTABA)
+    ---------------------------------------------------------- */
+
+    function revisarSesionGuardada() {
+        const sesion = localStorage.getItem("usuario");
+
+        if (sesion) {
+            const userData = JSON.parse(sesion);
+            mostrarSesion(userData);
+        } else {
+            ocultarSesion();
+        }
+    }
+
+    revisarSesionGuardada(); // ← IMPORTANTE
+
+
+    /* ---------------------
+       ABRIR/CERRAR MODAL
+    ---------------------- */
+    btnAbrirLogin.addEventListener("click", () => {
+        modalLogin.style.display = "flex";
+    });
+
+    btnCerrarModalLogin.addEventListener("click", () => {
+        modalLogin.style.display = "none";
+    });
+
+/* ---------------------
+   ENVÍO DEL LOGIN REAL
+---------------------- */
+
+formLogin.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const nombre = document.getElementById("input--name--user").value.trim();
+  const password = document.getElementById("input--password--user").value.trim();
+
+  if (nombre === "" || password === "") {
+    alert("Completa todos los campos.");
+    return;
+  }
+
+  try {
+    // REQUEST AL BACKEND
+    const res = await fetch("http://localhost:3000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombre, password })
+    });
+
+    const data = await res.json();
+
+    // SI RESPONDE ERROR
+    if (!res.ok) {
+      alert(data.error || "Credenciales inválidas");
+      return;
+    }
+
+    // =========================
+    // GUARDAR TOKEN Y USUARIO
+    // =========================
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("usuario", JSON.stringify({
+      nombre: data.usuario,
+      rol: data.tipo
+    }));
+
+    // =========================
+    // MOSTRAR DATOS EN PANTALLA
+    // =========================
+    mostrarSesion({
+      nombre: data.usuario,
+      rol: data.tipo
+    });
+
+    // CERRAR MODAL
+    modalLogin.style.display = "none";
+
+    alert("Inicio de sesión exitoso");
+
+  } catch (error) {
+    console.error("Error login:", error);
+    alert("Error de conexión con el servidor");
+  }
+});
+
+
+
+    /* ---------------------
+       CERRAR SESIÓN
+    ---------------------- */
+    btnCerrarSesion.addEventListener("click", () => {
+        localStorage.removeItem("usuario");
+        ocultarSesion();
+        alert("Sesión cerrada");
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnCarrito = document.querySelector("#button--carrito");
+    const carritoDiv = document.querySelector(".modal__carrito");
+    const listaCarrito = document.querySelector(".carrito--items");
+    const totalCarrito = document.querySelector(".pago--total");
+    const btnCerrarCarrito = document.querySelector("#cerrar--modal--carrito");
+    const numeroArticulos = document.querySelector(".numero--articulos");
+
+    // ============================
+    //      CARGAR CARRITO
+    // ============================
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    function guardarCarrito() {
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+
+    // ============================
+    //      RENDER CARRITO
+    // ============================
+
+    function renderCarrito() {
+        listaCarrito.innerHTML = "";
+        let total = 0;
+
+        carrito.forEach((producto, index) => {
+            const item = document.createElement("div");
+            item.classList.add("carrito--item");
+
+            item.innerHTML = `
+                <img src="${producto.img}" alt="" class="item--img" />
+                <div class="item--details">
+                    <p class="item--name">${producto.nombre}</p>
+                    <p class="item--price">$${producto.precio}</p>
+                    <div class="carrito--quantity">
+                        <label>Cantidad:</label>
+                        <input type="number" min="1" value="${producto.cantidad}" data-index="${index}" class="input-cantidad"/>
+                    </div>
+                </div>
+                <button class="item--remove" data-index="${index}">Eliminar</button>
+            `;
+
+            listaCarrito.appendChild(item);
+
+            total += producto.precio * producto.cantidad;
+        });
+
+        totalCarrito.textContent = `Total: $${total}`;
+        numeroArticulos.textContent = carrito.length;
+    }
+
+    renderCarrito();
+
+    // ============================
+    //   ABRIR / CERRAR CARRITO
+    // ============================
+
+    btnCarrito.addEventListener("click", () => {
+        carritoDiv.classList.add("show");
+    });
+
+    btnCerrarCarrito.addEventListener("click", () => {
+        carritoDiv.classList.remove("show");
+    });
+
+    // ============================
+    //   AGREGAR PRODUCTO
+    // ============================
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("mueble--agregar")) {
+
+            const card = e.target.closest(".producto--card");
+
+            const img = card.querySelector(".mueble--img").src;
+            const nombre = card.querySelector(".mueble--descripcion").textContent.trim();
+            const precio = parseFloat(card.querySelector(".mueble--precio").textContent.replace("$",""));
+            const id = nombre.replace(/\s+/g, "-").toLowerCase();
+
+            const existe = carrito.find(p => p.id === id);
+
+            if (existe) {
+                existe.cantidad++;
+            } else {
+                carrito.push({
+                    id,
+                    nombre,
+                    precio,
+                    img,
+                    cantidad: 1,
+                });
+            }
+            alert("Producto Añadido al carrito");
+            guardarCarrito();
+            renderCarrito();
+        }
+    });
+
+    // ============================
+    //  CAMBIAR CANTIDAD / ELIMINAR
+    // ============================
+
+    listaCarrito.addEventListener("click", (e) => {
+        if (e.target.classList.contains("item--remove")) {
+            const index = e.target.getAttribute("data-index");
+            carrito.splice(index, 1);
+            guardarCarrito();
+            renderCarrito();
+        }
+    });
+
+    listaCarrito.addEventListener("change", (e) => {
+        if (e.target.classList.contains("input-cantidad")) {
+            const index = e.target.getAttribute("data-index");
+            carrito[index].cantidad = parseInt(e.target.value);
+            guardarCarrito();
+            renderCarrito();
+        }
+    });
+
+});

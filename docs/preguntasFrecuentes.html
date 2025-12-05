@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css" />
     <title>Preguntas Frecuentes - Nova Hogar</title>
   </head>
@@ -11,7 +12,7 @@
     <header class="header">
       <div class="header__top">
         <div class="header__logo logo">
-          <a href="index.html" class="logo__link" >
+          <a href="index.html" class="logo__link">
             <img
               class="logo__img"
               src="assets/img/logoNovaHogar.png"
@@ -43,23 +44,29 @@
         </nav>
 
         <div class="header__carrito carrito">
-          <button id="button--carrito"
-            ><img src="assets/img/carrito.png" alt=""  class="carrito__img"
-          /></button>
+          <button id="button--carrito">
+            <img src="assets/img/carrito.png" alt="" class="carrito__img" />
+          </button>
           <span class="numero--articulos">10</span>
         </div>
 
         <div class="header__user user">
           <a href="#" class="user__login" id="button--iniciar--sesion">Iniciar Sesión</a>
+          <div class="user--loged">
+            <a href="panel-admin.html">Panel de Administrador</a>
+            <p class="nombre--user">Jetzan</p>
+            <a href="#" class="button--cerrar--sesion"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+          </div>
         </div>
       </div>
-
 
       <div class="header__bottom">
         <nav class="header__menu menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="#" class="menu__link" id="button--accesibilidad">Accesibilidad</a>
+              <a href="#" class="menu__link" id="button--accesibilidad"
+                >Accesibilidad</a
+              >
             </li>
             <li class="menu__item">
               <a href="contacto.html" class="menu__link">Contacto</a>

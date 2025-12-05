@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
     <title>Consultas de ventas - Nova Hogar</title>
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
@@ -52,8 +53,12 @@
         </div>
 
         <div class="header__user user">
-          <a href="panel-admin.html">Panel de Administrador</a>
-          
+          <a href="#" class="user__login" id="button--iniciar--sesion">Iniciar Sesión</a>
+          <div class="user--loged">
+            <a href="panel-admin.html">Panel de Administrador</a>
+            <p class="nombre--user">Jetzan</p>
+            <a href="#" class="button--cerrar--sesion"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+          </div>
         </div>
       </div>
 
@@ -61,7 +66,9 @@
         <nav class="header__menu menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="#" class="menu__link" id="button--accesibilidad">Accesibilidad</a>
+              <a href="#" class="menu__link" id="button--accesibilidad"
+                >Accesibilidad</a
+              >
             </li>
             <li class="menu__item">
               <a href="contacto.html" class="menu__link">Contacto</a>
