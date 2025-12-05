@@ -280,6 +280,9 @@ main .hero.fondo4{
 }
 
 
+
+
+
 main .hero__text{
     display: flex;
     flex-direction: column;
@@ -1416,7 +1419,7 @@ max-height: 200px;
     display: flex;
     flex-direction: row;
     width: 100%;
-    background-color: #E6DED4;
+    background-color: transparent;
 justify-content: center;
 }
 

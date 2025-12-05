@@ -29,6 +29,8 @@ async function createUser(nombre, correo, contraseñaHash, pais) {
 
 // Obtener usuario completo para login (incluye password hash)
 async function getUserForLogin(nombre) {
+    console.log('SELECT id, nombre, passwd, tipo, correo FROM usuarios WHERE nombre = ?', 
+        [nombre]);
     const [rows] = await pool.query(
         'SELECT id, nombre, passwd, tipo, correo FROM usuarios WHERE nombre = ?', 
         [nombre]

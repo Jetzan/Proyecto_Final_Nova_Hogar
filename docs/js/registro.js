@@ -1,3 +1,6 @@
+//API 
+const API = "https://backend-final-o904.onrender.com";
+
 //Variables
 let modalAbierto = false; // Variable para rastrear el estado del modal
 let modalCarritoAbierto = false;
@@ -106,3 +109,68 @@ const obtenerPaises = async () => {
 
 // Llamar a la función para obtener y mostrar los países al cargar la página
 obtenerPaises();
+
+
+
+
+
+const formRegistro = document.getElementById("form--registro");
+
+formRegistro.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Obtener valores del formulario
+    const nombre = document.getElementById("input--nombre--registro").value.trim();
+    const correo = document.getElementById("input--email--registro").value.trim();
+    const pais = document.getElementById("paises").value;
+    const contra = document.getElementById("input--password--registro").value;
+    const confirmar = document.getElementById("input--confirmar--password").value;
+
+    // Validaciones básicas
+    if (!nombre || !correo || !pais || !contra || !confirmar) {
+        Swal.fire("Error", "Por favor completa todos los campos", "error");
+        return;
+    }
+
+    if (contra !== confirmar) {
+        Swal.fire("Error", "Las contraseñas no coinciden", "error");
+        return;
+    }
+
+    // Crear objeto que se enviará al backend
+    const datos = {
+        nombre,
+        correo,
+        contra,
+        pais
+    };
+
+    try {
+        const response = await fetch(API+"/api/auth/newUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const data = await response.json();
+
+        // Si el servidor responde con error
+        if (!response.ok) {
+            Swal.fire("Error", data.mensaje || "Error al registrar usuario", "error");
+            return;
+        }
+
+        Swal.fire("Éxito", "Usuario registrado exitosamente", "success");
+        formRegistro.reset();
+
+    } catch (error) {
+        console.error(error);
+        Swal.fire("Error", "Error de conexión con el servidor", "error");
+    }
+});
+
+
+
+
