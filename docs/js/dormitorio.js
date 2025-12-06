@@ -11,9 +11,8 @@ async function cargarDormi() {
 }
 
 function displayProducts(productos) {
-  const categoria = document.getElementById("prodDormi");
-
-  const grid = categoria;
+  
+  const grid = document.querySelector(".productos--grid");
 
   productos.forEach((producto) => {
   });

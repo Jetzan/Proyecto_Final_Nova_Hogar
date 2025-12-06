@@ -11,9 +11,8 @@ async function cargarCome() {
 }
 
 function displayProducts(productos) {
-  const categoria = document.getElementById("prodCome");
 
-  const grid = categoria;
+  const grid = document.querySelector(".productos--grid");
 
   productos.forEach((producto) => {
   });
