@@ -170,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   revisarSesionGuardada(); // ← IMPORTANTE
 
   /* ---------------------
@@ -281,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //      CARGAR CARRITO
   // ============================
 
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
 
   function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
