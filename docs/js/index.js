@@ -96,6 +96,7 @@ function displayProducts(productos, categoryIndex) {
     const productosLimitados = productos.slice(0, 3);
     
     productosLimitados.forEach(producto=>{
+      console.log(producto);
       console.log(producto.url_imagen_principal);
     });
     grid.innerHTML = productosLimitados.map(producto => `
@@ -164,7 +165,7 @@ buttonSuscribirse.addEventListener("click", () => {
 
 
 
-const formSuscripcion = document.getElementById("form--suscripcion");
+const formSuscripcion = document.querySelector("form--suscripcion");
 const inputCorreo = document.getElementById("suscripcion--correo");
 
 formSuscripcion.addEventListener("submit", async (e) => {
