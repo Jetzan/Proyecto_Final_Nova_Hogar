@@ -1,6 +1,5 @@
-const API_URL = "https://backend-final-o904.onrender.com/api";
 
-async function cargarCome() {
+async function cargarDormi() {
   try {
     // Cargar productos de comedor
     const dormiRes = await fetch(`${API_URL}/products/dormitorios`);

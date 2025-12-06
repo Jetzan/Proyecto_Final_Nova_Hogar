@@ -1,4 +1,3 @@
-const API_URL = "https://backend-final-o904.onrender.com/api";
 
 async function cargarSal() {
   try {
