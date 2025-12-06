@@ -167,7 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     carrito = []; // Limpiar array en memoria
     renderCarrito(); // Actualiza la interfaz
     ocultarSesion();
-      ocultarSesion();
     }
   }
 

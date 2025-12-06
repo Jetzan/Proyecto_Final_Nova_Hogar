@@ -139,6 +139,7 @@ body{
 
 .user--loged{
     gap: 1rem;
+    display: none;
 }
 
 
