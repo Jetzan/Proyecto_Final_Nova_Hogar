@@ -178,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ---------------------- */
   btnAbrirLogin.addEventListener("click", () => {
     modalLogin.style.display = "flex";
+    console.log("Se muestra el modal del login");
   });
 
   btnCerrarModalLogin.addEventListener("click", () => {
