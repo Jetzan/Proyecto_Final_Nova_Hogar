@@ -1585,7 +1585,7 @@ justify-content: center;
 /*pago con tarjeta, el contenido interno*/
 .cardPayment{
     width: 23rem;
-    height: 48rem;
+    height: 64rem;
     background-color: #E6DED4;
     border-radius: 10px;
     margin-bottom: 1.5rem;

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon" />
     <title>Pago - Nova Hogar</title>
-</head>
-<body onload="cargarCarritoEnPago()">
-  <script
+  </head>
+  <body onload="cargarCarritoEnPago()">
+    <script
       src="https://kit.fontawesome.com/5f658418e2.js"
       crossorigin="anonymous"
     ></script>
-<header class="header">
+    <header class="header">
       <div class="header__top">
         <div class="header__logo logo">
           <a href="index.html" class="logo__link">
@@ -54,11 +54,15 @@
         </div>
 
         <div class="header__user user">
-          <a href="#" class="user__login" id="button--iniciar--sesion">Iniciar Sesión</a>
+          <a href="#" class="user__login" id="button--iniciar--sesion"
+            >Iniciar Sesión</a
+          >
           <div class="user--loged">
             <a href="panel-admin.html">Panel de Administrador</a>
             <p class="nombre--user">Jetzan</p>
-            <a href="#" class="button--cerrar--sesion"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            <a href="#" class="button--cerrar--sesion"
+              ><i class="fa-solid fa-arrow-right-from-bracket"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -87,141 +91,222 @@
       </div>
     </header>
     <main class="main--pago">
-
       <div class="PaginaPago">
-          <!--mitad centrada en el mostrar los productos que fueron agregados en el carrito-->
-          <div class="productoListado">
-  
-              <h1 class="productoListado__title">Lista de productos</h1>
-  
-              <div class="productInfo" id="productosPago">
-                  <!--La idea es que aqui esten en linea todos los productos que fueron comprados, nose bien como implementar eso, quiza una logica similar al carrito de compras-->
-              </div>
-              <p class="productoListado__price">El total de su compra es</p>
+        <!--mitad centrada en el mostrar los productos que fueron agregados en el carrito-->
+        <div class="productoListado">
+          <h1 class="productoListado__title">Lista de productos</h1>
+
+          <div class="productInfo" id="productosPago">
+            <!--La idea es que aqui esten en linea todos los productos que fueron comprados, nose bien como implementar eso, quiza una logica similar al carrito de compras-->
           </div>
-  
-          <div class="interfazPago">
-              <h1 class="interfazPago__title">Metodos de pago</h1>
-              
-              <hr class="interfazPago__line">
-  
-              <p class="interfazPago__explain">Estamos agradecidos por su 
-                  preferencia en muebles, el ultimo paso para el disfrute 
-                  es que pague sus productos seleccionados del carrito.</p>
-              
-              <button class="interfazPago__button interfazPago__button--tarjeta">Paga con tarjeta</button>
-              <div class="cardPayment hidden">
-                  
-                <p class="cardPayment__title">datos de contacto</p>
-                <hr class="cardPayment__line">
-  
-                        <!--boton deL correo-->
-                  <p class="cardPayment__text CardPayment__text--start" > Correo electronico</p>
-                  <input  type="text"
-                          class="cardPayment__input cardPayment__mail"
-                          placeholder="email*">
-                <!--boton deL nombre-->
-                  <p class="cardPayment__text CardPayment__text--start"> Nombre</p>
-                  <input  type="text"
-                          class="cardPayment__input cardPayment__name"
-                          size="4"
-                          placeholder="nombre*">
-                <!--boton deL apellido-->
-                  <p class="cardPayment__text CardPayment__text--start" > Apellido</p>
-                  <input  type="text"
-                          class="cardPayment__input cardPayment__surname"
-                          placeholder="apellidos*">
-                <!--boton deL telefono-->
-                  <p class="cardPayment__text CardPayment__text--start"> Telefono</p>
-                  <input  type="text"
-                          class="cardPayment__input cardPayment__phone"
-                          placeholder="Num. Telefono*">
-                
-                <hr class="cardPayment__line">
-                <p class="cardPayment__title">datos de tarjeta</p>          
-                <hr class="cardPayment__line">
-                <!--boton del numero de tarjeta-->
-                  <p class="cardPayment__text CardPayment__text--start">Introduce los numeros de tu tarjeta</p>
-                  <input  type="text" 
-                          class="cardPayment__input cardPayment__number " 
-                          pattern="\d{16}"
-                          placeholder="XXXX XXXX XXXX XXXX">
-                <!--boton de fecha de expiracion-->
-                  <p class="cardPayment__text CardPayment__text--start">Introduce la fecha de expiracion</p>
-                  <input  type="text" 
-                          class="cardPayment__input cardPayment__expire"
-                          placeholder="MM/AA">
-                  <!--boton deL codigo de seguridad-->
-                  <p class="cardPayment__text CardPayment__text--start">Introduce tu codiugo de seguridad </p>
-                  <input  type="text" 
-                          class="cardPayment__input cardPayment__security"
-                          placeholder="***">
-                  
-                  <button class="cardPayment__submit"> Confirmar pago </button>
-              
-              </div>
-  
-          <button class="interfazPago__button interfazPago__button--transferencia">Paga con transferencia</button>
+          <p class="productoListado__price">El total de su compra es</p>
+        </div>
+
+        <div class="interfazPago">
+          <h1 class="interfazPago__title">Metodos de pago</h1>
+
+          <hr class="interfazPago__line" />
+
+          <p class="interfazPago__explain">
+            Estamos agradecidos por su preferencia en muebles, el ultimo paso
+            para el disfrute es que pague sus productos seleccionados del
+            carrito.
+          </p>
+
+          <button class="interfazPago__button interfazPago__button--tarjeta">
+            Paga con tarjeta
+          </button>
+          <div class="cardPayment hidden">
+            <p class="cardPayment__title">datos de contacto</p>
+            <hr class="cardPayment__line" />
+
+            <!-- nombre_cliente -->
+            <p class="cardPayment__text cardPayment__text--start">
+              Nombre del cliente*
+            </p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__nombre-cliente"
+              placeholder="nombre_cliente"
+            />
+
+            <!-- direccion -->
+            <p class="cardPayment__text cardPayment__text--start">Dirección*</p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__direccion"
+              placeholder="direccion"
+            />
+
+            <!-- ciudad -->
+            <p class="cardPayment__text cardPayment__text--start">Ciudad*</p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__ciudad"
+              placeholder="ciudad"
+            />
+
+            <!-- codigo_postal -->
+            <p class="cardPayment__text cardPayment__text--start">
+              Código postal*
+            </p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__codigo-postal"
+              placeholder="codigo_postal"
+            />
+
+            <!-- telefono -->
+            <p class="cardPayment__text cardPayment__text--start">Teléfono*</p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__telefono"
+              placeholder="telefono"
+            />
+
+            <!-- pais -->
+            <p class="cardPayment__text cardPayment__text--start">País*</p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__pais"
+              placeholder="pais"
+            />
+
+            <hr class="cardPayment__line" />
+            <p class="cardPayment__title">datos de tarjeta</p>
+            <hr class="cardPayment__line" />
+            <!--boton del numero de tarjeta-->
+            <p class="cardPayment__text CardPayment__text--start">
+              Introduce los numeros de tu tarjeta
+            </p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__number"
+              pattern="\d{16}"
+              placeholder="XXXX XXXX XXXX XXXX"
+            />
+            <!--boton de fecha de expiracion-->
+            <p class="cardPayment__text CardPayment__text--start">
+              Introduce la fecha de expiracion
+            </p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__expire"
+              placeholder="MM/AA"
+            />
+            <!--boton deL codigo de seguridad-->
+            <p class="cardPayment__text CardPayment__text--start">
+              Introduce tu codiugo de seguridad
+            </p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__security"
+              placeholder="***"
+            />
+
+            <!-- codigo_cupon -->
+            <p class="cardPayment__text cardPayment__text--start">
+              Código de cupón
+            </p>
+            <input
+              type="text"
+              class="cardPayment__input cardPayment__codigo-cupon"
+              placeholder="codigo_cupon"
+            />
+
+            <button class="cardPayment__submit">Confirmar pago</button>
+          </div>
+
+          <button
+            class="interfazPago__button interfazPago__button--transferencia"
+          >
+            Paga con transferencia
+          </button>
           <div class="transferPayment hidden">
-  
-          <p class="transferPayment__title">Datos de contacto</p>
-          <hr class="transferPayment__line">
-  
-          <!-- Botón del correo -->
-          <p class="transferPayment__text transferPayment__text--start">Correo electrónico</p>
-          <input type="text"
-                class="transferPayment__input transferPayment__mail"
-                placeholder="email*">
-  
-          <!-- Botón del nombre -->
-          <p class="transferPayment__text transferPayment__text--start">Nombre</p>
-          <input type="text"
-                class="transferPayment__input transferPayment__name"
-                placeholder="nombre*">
-  
-          <!-- Botón del apellido -->
-          <p class="transferPayment__text transferPayment__text--start">Apellido</p>
-          <input type="text"
-                 class="transferPayment__input transferPayment__surname"
-                 placeholder="apellidos*">
-  
-                 <hr class="transferPayment__line">
-          <p class="transferPayment__title">Datos de transferencia</p>               
-                 <hr class="transferPayment__line">
-  
-          <p class="transferPayment__text transferPayment__text--start">Banco del destino</p>
-          <input  type="text"
-                  class="transferPayment__input transferPayment__destinyBank"
-                  placeholder="Banco de destino">
-  
-          <p class="transferPayment__text transferPayment__text--start">Numero de cuenta</p>
-          <input type="text"
-                  class="transferPayment__input transferPayment__countNumber"
-                  placeholder="Numero de cuenta">
-  
-          <p class="transferPayment__text transferPayment__text--start">Monto a transferir</p>
-          <input type="text"
-                  class="transferPayment__input transferPayment__transferMount"
-                  placeholder="Monto a transferir">
-  
-          <button class="transPayment__submit"> Confirmar transferencia </button>
-  
-                </div>
-  
-              <button class="interfazPago__button interfazPago__button--oxxo">Paga en Oxxo</button>
-              <div class="oxxoPayment hidden">
-                <img src="assets\img\oxxo.png" class="oxxoPayment__img">
-                <p class="oxxoPayment__advise"> Tu recibo de compra deberia haberse descargado.</p>
-                <p class="oxxoPayment__advise">llevalo a tu sucursal mas cercana</p>
-              </div>
-  
+            <p class="transferPayment__title">Datos de contacto</p>
+            <hr class="transferPayment__line" />
+
+            <!-- Botón del correo -->
+            <p class="transferPayment__text transferPayment__text--start">
+              Correo electrónico
+            </p>
+            <input
+              type="text"
+              class="transferPayment__input transferPayment__mail"
+              placeholder="email*"
+            />
+
+            <!-- Botón del nombre -->
+            <p class="transferPayment__text transferPayment__text--start">
+              Nombre
+            </p>
+            <input
+              type="text"
+              class="transferPayment__input transferPayment__name"
+              placeholder="nombre*"
+            />
+
+            <!-- Botón del apellido -->
+            <p class="transferPayment__text transferPayment__text--start">
+              Apellido
+            </p>
+            <input
+              type="text"
+              class="transferPayment__input transferPayment__surname"
+              placeholder="apellidos*"
+            />
+
+            <hr class="transferPayment__line" />
+            <p class="transferPayment__title">Datos de transferencia</p>
+            <hr class="transferPayment__line" />
+
+            <p class="transferPayment__text transferPayment__text--start">
+              Banco del destino
+            </p>
+            <input
+              type="text"
+              class="transferPayment__input transferPayment__destinyBank"
+              placeholder="Banco de destino"
+            />
+
+            <p class="transferPayment__text transferPayment__text--start">
+              Numero de cuenta
+            </p>
+            <input
+              type="text"
+              class="transferPayment__input transferPayment__countNumber"
+              placeholder="Numero de cuenta"
+            />
+
+            <p class="transferPayment__text transferPayment__text--start">
+              Monto a transferir
+            </p>
+            <input
+              type="text"
+              class="transferPayment__input transferPayment__transferMount"
+              placeholder="Monto a transferir"
+            />
+
+            <button class="transPayment__submit">
+              Confirmar transferencia
+            </button>
           </div>
-  
+
+          <button class="interfazPago__button interfazPago__button--oxxo">
+            Paga en Oxxo
+          </button>
+          <div class="oxxoPayment hidden">
+            <img src="assets\img\oxxo.png" class="oxxoPayment__img" />
+            <p class="oxxoPayment__advise">
+              Tu recibo de compra deberia haberse descargado.
+            </p>
+            <p class="oxxoPayment__advise">llevalo a tu sucursal mas cercana</p>
+          </div>
+        </div>
       </div>
     </main>
 
-
-     <footer class="footer">
+    <footer class="footer">
       <div class="footer__logo">
         <img
           class="footer__logo--img"
@@ -235,7 +320,10 @@
             <a href=""><i class="fa-brands fa-facebook"></i></a>
           </li>
           <li>
-            <a href="https://www.instagram.com/novahogaroficial?igsh=MTFxNjIyZmJvNWpiZA=="><i class="fa-brands fa-instagram"></i></a>
+            <a
+              href="https://www.instagram.com/novahogaroficial?igsh=MTFxNjIyZmJvNWpiZA=="
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
           </li>
           <li>
             <a href=""><i class="fa-brands fa-x-twitter"></i></a>
@@ -424,7 +512,7 @@
         <input type="checkbox" id="darkModeToggle" />
         <span class="accessibility__toggle"></span>
       </label>
-      
+
       <h2>Ejemplo:</h2>
       <p class="accessibility--example">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut id itaque
@@ -435,6 +523,5 @@
     </div>
     <script src="js/main.js"></script>
     <script src="js/pago.js"></script>
-
-</body>
+  </body>
 </html>

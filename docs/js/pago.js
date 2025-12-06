@@ -113,3 +113,49 @@ async function cargarCarritoEnPago() {
         console.error("Error cargando carrito:", error);
     }
 }
+
+
+
+
+const botonPago = document.querySelector('.cardPayment__submit');
+
+botonPago.addEventListener('click', async () => {
+
+    // Capturar datos desde el formulario
+    const datos = {
+        nombre_cliente: document.querySelector('.cardPayment__nombre-cliente').value,
+        direccion: document.querySelector('.cardPayment__direccion').value,
+        ciudad: document.querySelector('.cardPayment__ciudad').value,
+        codigo_postal: document.querySelector('.cardPayment__codigo-postal').value,
+        telefono: document.querySelector('.cardPayment__telefono').value,
+        pais: document.querySelector('.cardPayment__pais').value,
+        metodo_pago: document.querySelector('input[name="metodoPago"]:checked')?.value, 
+        codigo_cupon: document.querySelector('.cardPayment__codigo-cupon').value || ""
+    };
+
+    console.log("Datos enviados al backend:", datos);
+
+    try {
+        const res = await fetch(`${API_URL}/purchase/process`, {
+            method: "POST",
+            credentials: "include", // IMPORTANTE para enviar cookies del login
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const respuesta = await res.json();
+        console.log("Respuesta del backend:", respuesta);
+
+        if (res.ok) {
+            alert("Compra procesada exitosamente. Orden ID: " + respuesta.ordenId);
+        } else {
+            alert("Error: " + respuesta.error);
+        }
+
+    } catch (error) {
+        console.error("Error enviando datos de pago:", error);
+        alert("Ocurrió un error al procesar tu compra.");
+    }
+});
