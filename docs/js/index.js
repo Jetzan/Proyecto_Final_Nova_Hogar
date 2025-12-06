@@ -108,7 +108,6 @@ function displayProducts(productos, categoryIndex) {
   grid.querySelectorAll(".mueble--agregar").forEach((button) => {
     button.addEventListener("click", (e) => {
       const productId = e.target.dataset.productId;
-      addToCart(productId);
     });
   });
 }

@@ -217,11 +217,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(data);
       localStorage.setItem("token", data.token);
 
-      console.log(data.userNombre+"-"+data.userTipo);
-      console.log(JSON.stringify({
+      console.log(data.userNombre + "-" + data.userTipo);
+      console.log(
+        JSON.stringify({
           nombre: data.userNombre,
           rol: data.userTipo,
-        }));
+        })
+      );
 
       localStorage.setItem(
         "usuario",
@@ -252,9 +254,12 @@ document.addEventListener("DOMContentLoaded", () => {
        CERRAR SESIÓN
     ---------------------- */
   btnCerrarSesion.addEventListener("click", () => {
-    localStorage.removeItem("usuario");
+    localStorage.removeItem("usuario"); // Elimina la sesión
+    localStorage.removeItem("carrito"); // Elimina el carrito
+    carrito = []; // Limpiar array en memoria
+    renderCarrito(); // Actualiza la interfaz
     ocultarSesion();
-    alert("Sesión cerrada");
+    alert("Sesión cerrada y carrito eliminado");
   });
 
   const btnCarrito = document.querySelector("#button--carrito");
@@ -287,9 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add("carrito--item");
 
       item.innerHTML = `
-                <img src="${
-                  producto.img.trim() || "assets/img/mueble1.png"
-                }"
+                <img src="${producto.img || "assets/img/mueble1.png"}"
      alt="${producto.nombre}"class="item--img" />
                 <div class="item--details">
                     <p class="item--name">${producto.nombre}</p>
@@ -333,6 +336,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("mueble--agregar")) {
+      if (!cuentaLogeada) {
+        Swal.fire({
+          icon: "warning",
+          title: "Debes iniciar sesión",
+          text: "No puedes agregar productos al carrito si no has iniciado sesión.",
+          confirmButtonText: "Aceptar",
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        return; // Salir de la función si no está logueado
+      }
+
       const card = e.target.closest(".producto--card");
 
       const img = card.querySelector(".mueble--img").src;
