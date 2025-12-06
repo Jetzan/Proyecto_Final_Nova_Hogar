@@ -217,8 +217,8 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(
         "usuario",
         JSON.stringify({
-          nombre: data.nombre,
-          rol: data.tipo,
+          nombre: data.userNombre,
+          rol: data.userTipo,
         })
       );
 
@@ -226,8 +226,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // MOSTRAR DATOS EN PANTALLA
       // =========================
       mostrarSesion({
-        nombre: data.usuario,
-        rol: data.tipo,
+        nombre: data.userNombre,
+        rol: data.userTipo,
       });
 
       // CERRAR MODAL
@@ -239,7 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Error de conexión con el servidor");
     }
   });
-
   /* ---------------------
        CERRAR SESIÓN
     ---------------------- */
@@ -279,14 +278,19 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add("carrito--item");
 
       item.innerHTML = `
-                <img src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.png'}"
+                <img src="${
+                  producto.url_imagen?.trim() ||
+                  "assets/img/mueble1.png"
+                }"
      alt="${producto.nombre}"class="item--img" />
                 <div class="item--details">
                     <p class="item--name">${producto.nombre}</p>
                     <p class="item--price">$${producto.precio}</p>
                     <div class="carrito--quantity">
                         <label>Cantidad:</label>
-                        <input type="number" min="1" value="${producto.cantidad}" data-index="${index}" class="input-cantidad"/>
+                        <input type="number" min="1" value="${
+                          producto.cantidad
+                        }" data-index="${index}" class="input-cantidad"/>
                     </div>
                 </div>
                 <button class="item--remove" data-index="${index}">Eliminar</button>
