@@ -2018,6 +2018,12 @@ body.dark-mode .accessibility__label {
    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
+.modal__suscribirse form{
+    display: flex;
+    flex-direction: column;
+
+}
+
 .suscribirse__text{
     font-family: "Aptos", Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
@@ -2048,8 +2054,14 @@ border-radius: 10px;
     padding-top: .1rem ;
     border: none;
     background-color: #B8AFA6;
+    cursor: pointer;
 }
 
+
+.suscribirse__enviar:hover{
+    background-color: #85360c;
+    color: white;
+}
 
 #button--cerrar--suscribirse{
     position: absolute;
