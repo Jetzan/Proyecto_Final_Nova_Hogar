@@ -86,49 +86,28 @@ inputExpire.addEventListener('input', (e) => {
 // en la página de métodos de pago, incluyendo la imagen de cada producto
 async function cargarCarritoEnPago() {
     try {
-        // Obtener datos del carrito (requiere autenticación)
-        const res = await fetch(`${API_URL}/cart`, {
-            credentials: "include",
-        });
-        const cart = await res.json();
+        // Obtener carrito desde LocalStorage
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
         const contenedor = document.getElementById("productosPago");
         contenedor.innerHTML = "";
 
-        // Iterar sobre cada item del carrito
-        for (const item of cart.items) {
-            let imgSrc = ""; // valor por defecto por si no hay imagen
+        if (carrito.length === 0) {
+            contenedor.innerHTML = "<p>No hay productos en el carrito.</p>";
+            return;
+        }
 
-            let prodId = item.c.id;
-
-            do{
-              let ban = false;
-              try {
-                const imgRes = await fetch(`${API_URL}/products/all`);
-                const imgData = await imgRes.json();
-                imgData.forEach(prod => {
-                  if(prod.id === prodId){
-                    src = prod.url_imagen;
-                    ban = true;
-                  } else{
-                    ban = false;
-                  }
-                });
-              } catch (imgError) {
-                  console.error(`Error cargando imagen del producto ${item.id}:`, imgError);
-              }
-            } while(!ban);
-
-            // Crear bloque HTML por cada producto
+        // Mostrar cada producto guardado en LocalStorage
+        carrito.forEach(item => {
             const itemHTML = `
                 <div class="productInfo__item">
-                    <img src="${imgSrc}" alt="${item.nombre}" class="productInfo__img">
+                    <img src="${item.img}" alt="${item.nombre}" class="productInfo__img">
                     <p class="productInfo__infoName">${item.nombre}</p>
-                    <p class="productInfo__infoPrice">$${item.precio}</p>
+                    <p class="productInfo__infoPrice">$${item.precio} x ${item.cantidad}</p>
                 </div>
             `;
             contenedor.innerHTML += itemHTML;
-        }
+        });
 
     } catch (error) {
         console.error("Error cargando carrito:", error);
