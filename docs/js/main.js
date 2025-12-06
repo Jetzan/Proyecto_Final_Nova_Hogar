@@ -278,7 +278,8 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add("carrito--item");
 
       item.innerHTML = `
-                <img src="${producto.img}" alt="" class="item--img" />
+                <img src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.jpg'}"
+     alt="${producto.nombre}"class="item--img" />
                 <div class="item--details">
                     <p class="item--name">${producto.nombre}</p>
                     <p class="item--price">$${producto.precio}</p>
@@ -370,28 +371,4 @@ document.addEventListener("DOMContentLoaded", () => {
       renderCarrito();
     }
   });
-});
-
-const buttonSuscribirse = document.getElementById("button--suscribirse");
-
-buttonSuscribirse.addEventListener("click", () => {
-  if (cuentaLogeada) {
-    Swal.fire({
-      title: "¡Suscripcion exitosa",
-      text: "Gracias por suscribirse",
-      icon: "succes",
-      confirmButtonText: "Aceptar",
-      timer: 3000,
-      timerProgressBar: true,
-    });
-  } else {
-    Swal.fire({
-      title: "Atención",
-      text: "Debes iniciar sesion para suscribirte",
-      icon: "warning",
-      confirmButtonText: "Aceptar",
-      timer: 3000,
-      timerProgressBar: true,
-    });
-  }
 });
