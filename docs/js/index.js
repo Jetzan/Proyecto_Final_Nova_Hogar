@@ -1,5 +1,5 @@
-//Variables
 let index = 0; // Índice del slide actual
+//Variables
 
 
 //Elementos del DOM
@@ -112,3 +112,12 @@ function displayProducts(productos, categoryIndex) {
     });
   }
   cargarProductos();
+
+
+
+buttonCerrarSuscripcion = document.getElementById("button--cerrar--suscribirse");
+
+buttonSuscribirse.addEventListener("click",()=>{
+  document.querySelector(".modal__suscribirse").style.display="none";
+  
+})

@@ -2045,8 +2045,22 @@ border-radius: 10px;
     padding-bottom: .1rem;
     padding-top: .1rem ;
     border: none;
-    background-color: ;
+    background-color: #B8AFA6;
 }
+
+
+#button--cerrar--suscribirse{
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+    background-color: transparent;
+    border: none;
+    color: #CFC6BC;
+    cursor: pointer;
+}
+
+
+
 /*
     font-family: "Calibri", sans-serif;
     font-family: "Aptos", Arial, Helvetica, sans-serif;

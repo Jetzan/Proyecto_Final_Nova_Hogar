@@ -3,8 +3,7 @@ let modalCarritoAbierto = false;
 let modalAccesibilidadAbierto = false;
 let cuentaLogeada = false;
 
-
-const API_URL = 'https://backend-final-o904.onrender.com/api';
+const API_URL = "https://backend-final-o904.onrender.com/api";
 
 //Elementos del DOM
 
@@ -23,14 +22,13 @@ const buttonCerrarModalCarrito = document.getElementById(
 
 //Mostrar modal carrito
 function mostrarModalCarrito() {
-
-  if(!cuentaLogeada){
-  Swal.fire({
-  icon: "warning",
-  title: "¡Atención!",
-  text: "Debes iniciar sesión para ver tu carrito",
-  confirmButtonText: "Aceptar",
-});
+  if (!cuentaLogeada) {
+    Swal.fire({
+      icon: "warning",
+      title: "¡Atención!",
+      text: "Debes iniciar sesión para ver tu carrito",
+      confirmButtonText: "Aceptar",
+    });
     return;
   }
 
@@ -159,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sesion) {
       const userData = JSON.parse(sesion);
       mostrarSesion(userData);
+      cuentaLogeada = true; // ← IMPORTANTE
     } else {
       ocultarSesion();
     }
@@ -196,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // REQUEST AL BACKEND
-      const res = await fetch(API_URL+"/auth/login", {
+      const res = await fetch(API_URL + "/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, password }),
@@ -217,8 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(
         "usuario",
         JSON.stringify({
-          nombre: data.usuario,
-          rol: data.tipo,
+          nombre: data.usuario.nombre,
+          rol: data.usuario.tipo,
         })
       );
 
@@ -233,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // CERRAR MODAL
       modalLogin.style.display = "none";
 
-      cuentaLogeada=true;
+      cuentaLogeada = true;
     } catch (error) {
       console.error("Error login:", error);
       alert("Error de conexión con el servidor");
@@ -373,38 +372,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
-
-
 const buttonSuscribirse = document.getElementById("button--suscribirse");
 
-
-
-buttonSuscribirse.addEventListener("click" ,() =>{
-  if(cuentaLogeada){
+buttonSuscribirse.addEventListener("click", () => {
+  if (cuentaLogeada) {
     Swal.fire({
-      title:"¡Suscripcion exitosa",
-      text:"Gracias por suscribirse",
-      icon:"succes",
-      confirmButtonText:"Aceptar",
-      timer:3000,
-      timerProgressBar:true
-
+      title: "¡Suscripcion exitosa",
+      text: "Gracias por suscribirse",
+      icon: "succes",
+      confirmButtonText: "Aceptar",
+      timer: 3000,
+      timerProgressBar: true,
     });
-    
-  }else{
+  } else {
     Swal.fire({
-      title:"Atención",
-      text:"Debes iniciar sesion para suscribirte",
-      icon:"warning",
-      confirmButtonText:"Aceptar",
-      timer:3000,
-      timerProgressBar:true
-
+      title: "Atención",
+      text: "Debes iniciar sesion para suscribirte",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      timer: 3000,
+      timerProgressBar: true,
     });
-
-
-
   }
 });
