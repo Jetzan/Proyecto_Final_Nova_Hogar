@@ -140,11 +140,11 @@ formRegistro.addEventListener("submit", async (e) => {
     const datos = { nombre, correo, contra, pais };
 
     // 1) Validar Captcha
-    const token = grecaptcha.getResponse();
-    if (!token) {
-        Swal.fire("Error", "Por favor valida el captcha.", "error");
-        return;
-    }
+    // const token = grecaptcha.getResponse();
+    // if (!token) {
+    //     Swal.fire("Error", "Por favor valida el captcha.", "error");
+    //     return;
+    // }
 
     // try {
     //     const res = await fetch(`${API}/api/auth/captcha`, {
@@ -193,7 +193,7 @@ formRegistro.addEventListener("submit", async (e) => {
 
         Swal.fire("Éxito", "Usuario registrado exitosamente", "success");
         formRegistro.reset();
-        grecaptcha.reset();
+        // grecaptcha.reset();
     } catch (error) {
         console.error("Error de conexión con el servidor:", error);
         Swal.fire("Error", "Error de conexión con el servidor", "error");
