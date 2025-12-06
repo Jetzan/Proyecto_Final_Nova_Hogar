@@ -137,7 +137,7 @@ formRegistro.addEventListener("submit", async (e) => {
     }
     password=contra;
     // Objeto para el backend
-    const datos = { nombre, correo, password, pais,"cliente" };
+    const datos = { nombre, correo, password, pais,cliente:"cliente" };
 
     // 1) Validar Captcha
     // const token = grecaptcha.getResponse();
