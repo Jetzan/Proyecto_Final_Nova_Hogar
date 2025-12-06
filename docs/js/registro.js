@@ -135,9 +135,9 @@ formRegistro.addEventListener("submit", async (e) => {
         Swal.fire("Error", "Las contraseñas no coinciden", "error");
         return;
     }
-
+    password=contra;
     // Objeto para el backend
-    const datos = { nombre, correo, contra, pais };
+    const datos = { nombre, correo, password, pais,"cliente" };
 
     // 1) Validar Captcha
     // const token = grecaptcha.getResponse();
