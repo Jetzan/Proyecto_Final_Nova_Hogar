@@ -145,6 +145,8 @@ formRegistro.addEventListener("submit", async (e) => {
         pais
     };
 
+
+    
     const token = grecaptcha.getResponse();
     if (!token) {
         alert("Por favor valida el captcha.");
