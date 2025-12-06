@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add("carrito--item");
 
       item.innerHTML = `
-                <img src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.pnf'}"
+                <img src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.png'}"
      alt="${producto.nombre}"class="item--img" />
                 <div class="item--details">
                     <p class="item--name">${producto.nombre}</p>

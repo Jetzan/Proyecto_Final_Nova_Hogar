@@ -2,6 +2,7 @@ let index = 0; // Índice del slide actual
 //Variables
 
 
+
 //Elementos del DOM
 
 
@@ -124,10 +125,9 @@ function displayProducts(productos, categoryIndex) {
 
 buttonCerrarSuscripcion = document.getElementById("button--cerrar--suscribirse");
 
-buttonSuscribirse.addEventListener("click",()=>{
+buttonCerrarSuscripcion.addEventListener("click",()=>{
   document.querySelector(".modal__suscribirse").style.display="none";
-  
-})
+});
 
 
 
@@ -152,5 +152,53 @@ buttonSuscribirse.addEventListener("click", () => {
       timer: 3000,
       timerProgressBar: true,
     });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+const formSuscripcion = document.getElementById("form--suscripcion");
+const inputCorreo = document.getElementById("suscripcion--correo");
+
+formSuscripcion.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const correo = inputCorreo.value.trim();
+
+  // Recuperar el nombre del LocalStorage
+  const nombre = localStorage.getItem("nombreUsuario") || "Suscriptor";
+
+  if (!correo) {
+    alert("Ingresa un correo válido.");
+    return;
+  }
+
+  try {
+    const respuesta = await fetch(API_URL+"/subscription", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ correo, nombre }),
+    });
+
+    const data = await respuesta.json();
+
+    if (data.success) {
+      alert("¡Suscripción exitosa! Revisa tu correo 🙂");
+      inputCorreo.value = "";
+    } else {
+      alert("Hubo un problema: " + data.error);
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Error al enviar. Intenta más tarde.");
   }
 });
