@@ -82,10 +82,6 @@ inputExpire.addEventListener('input', (e) => {
     }
 });
 
-
-
-
-
 // Función encargada de mostrar los datos de los productos agregados al carrito
 // en la página de métodos de pago, incluyendo la imagen de cada producto
 async function cargarCarritoEnPago() {
@@ -101,24 +97,18 @@ async function cargarCarritoEnPago() {
 
         // Iterar sobre cada item del carrito
         for (const item of cart.items) {
-            let imgSrc = ""; // valor por defecto por si no hay imagen
-
-            try {
-                // Obtener imagen del producto
-                const imgRes = await fetch(`${API_URL}/product/${item.id}/images`);
-                const imgData = await imgRes.json();
-                // Si hay imágenes, toma la primera
-                if (imgData && imgData.length > 0) {
-                    imgSrc = imgData[0].url; // Ajusta 'url' según la respuesta real de la API
-                }
-            } catch (imgError) {
-                console.error(`Error cargando imagen del producto ${item.id}:`, imgError);
+            let src = "";
+            if(item.url_imagen){
+                let id = item.c.id;
+                const imagenres = await fetch(`${API_URL}/products/${id}/image`);
+                src = imagenres.json();
+            } else{
+                src = "";
             }
-
             // Crear bloque HTML por cada producto
             const itemHTML = `
                 <div class="productInfo__item">
-                    <img src="${imgSrc}" alt="${item.nombre}" class="productInfo__img">
+                    <img src="${src}" alt="Producto" class="productInfo__img">
                     <p class="productInfo__infoName">${item.nombre}</p>
                     <p class="productInfo__infoPrice">$${item.precio}</p>
                 </div>
@@ -130,7 +120,3 @@ async function cargarCarritoEnPago() {
         console.error("Error cargando carrito:", error);
     }
 }
-
-// Ejecuta cuando el HTML ya está cargado
-document.addEventListener("DOMContentLoaded", cargarCarritoEnPago);
-  

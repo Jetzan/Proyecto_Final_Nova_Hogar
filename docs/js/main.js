@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const contenedorLoged = document.querySelector(".user--loged");
   const textoNombre = document.querySelector(".nombre--user");
-  const btnCerrarSesion = document.querySelector(".button--cerrar--sesion");
+  const btnCerrarSesion = contenedorLoged.querySelector(".button--cerrar--sesion");
   const btnPanelAdmin = document.querySelector(
     ".user--loged a[href='panel-admin.html']"
   );

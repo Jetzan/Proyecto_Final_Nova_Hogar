@@ -7,8 +7,9 @@
     <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
     <title>Pago - Nova Hogar</title>
     <link rel="stylesheet" href="estilos.css">
+    <script src="js/pago.js"></script>
 </head>
-<body>
+<body onload="cargarCarritoEnPago()">
   <script
       src="https://kit.fontawesome.com/5f658418e2.js"
       crossorigin="anonymous"
@@ -96,9 +97,6 @@
               <h1 class="productoListado__title">Lista de productos</h1>
   
               <div class="productInfo" id="productosPago">
-                  <img src="" class="productInfo__image">
-                  <p class="productInfo__infoName">tabla de roble o algo asi</p>
-                  <p class="productInfo__infoPrice">100pesos</p>
                   <!--La idea es que aqui esten en linea todos los productos que fueron comprados, nose bien como implementar eso, quiza una logica similar al carrito de compras-->
               </div>
               <p class="productoListado__price">El total de su compra es</p>
@@ -437,7 +435,6 @@
         cupiditate. Facilis.
       </p>
     </div>
-
-<script src="js/pago.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
