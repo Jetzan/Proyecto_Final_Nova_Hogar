@@ -120,6 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ".user--loged a[href='panel-admin.html']"
   );
 
+
+  document.getElementById("carrito--checkout").addEventListener("click",()=>{
+    window.location.href = "pago.html";
+  });
+
   /* ---------------------------
        FUNCIONES PARA LA SESIÓN
     ---------------------------- */
