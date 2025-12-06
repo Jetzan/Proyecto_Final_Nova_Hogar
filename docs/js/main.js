@@ -153,6 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ✔ REVISAR SESIÓN AL CARGAR LA PÁGINA (LO QUE FALTABA)
     ---------------------------------------------------------- */
 
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
+  
+  
   function revisarSesionGuardada() {
     const sesion = localStorage.getItem("usuario");
 
@@ -170,7 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   revisarSesionGuardada(); // ← IMPORTANTE
 
   /* ---------------------
