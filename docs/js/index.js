@@ -155,7 +155,7 @@ formSuscripcion.addEventListener("submit", async (e) => {
   }
 
   try {
-    const respuesta = await fetch(API_URL + "/subscription", {
+    const respuesta = await fetch(API_URL + " /subscription/subscribe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

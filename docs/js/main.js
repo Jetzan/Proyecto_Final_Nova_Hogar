@@ -160,7 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const userData = JSON.parse(sesion);
       mostrarSesion(userData);
       cuentaLogeada = true; // ← IMPORTANTE
+      renderCarrito(); // Actualiza la interfaz
     } else {
+      localStorage.removeItem("usuario"); // Elimina la sesión
+    localStorage.removeItem("carrito"); // Elimina el carrito
+    carrito = []; // Limpiar array en memoria
+    renderCarrito(); // Actualiza la interfaz
+    ocultarSesion();
       ocultarSesion();
     }
   }
