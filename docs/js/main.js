@@ -216,8 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(
         "usuario",
         JSON.stringify({
-          nombre: data.usuario.nombre,
-          rol: data.usuario.tipo,
+          nombre: data.nombre,
+          rol: data.tipo,
         })
       );
 

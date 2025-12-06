@@ -165,7 +165,7 @@ buttonSuscribirse.addEventListener("click", () => {
 
 
 
-const formSuscripcion = document.querySelector("form--suscripcion");
+const formSuscripcion = document.querySelector(".form--suscripcion");
 const inputCorreo = document.getElementById("suscripcion--correo");
 
 formSuscripcion.addEventListener("submit", async (e) => {
