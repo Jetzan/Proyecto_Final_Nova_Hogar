@@ -126,7 +126,7 @@ const buttonSuscribirse = document.getElementById("button--suscribirse");
 
 buttonSuscribirse.addEventListener("click", () => {
   if (cuentaLogeada) {
-    document.querySelector(".modal__suscribirse").style.display = "none";
+    document.querySelector(".modal__suscribirse").style.display = "flex";
   } else {
     Swal.fire({
       title: "Atención",

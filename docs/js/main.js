@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       item.innerHTML = `
                 <img src="${
-                  producto.url_imagen?.trim() || "assets/img/mueble1.png"
+                  producto.img.trim() || "assets/img/mueble1.png"
                 }"
      alt="${producto.nombre}"class="item--img" />
                 <div class="item--details">
