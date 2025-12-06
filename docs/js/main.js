@@ -63,24 +63,26 @@ toggleFont.addEventListener("change", ()=>{
     }else{
       document.documentElement.style.setProperty("--fuente", "Arial"); 
     }
-});
-
-
-
-
-const toggle = document.getElementById("darkModeToggle");
-toggle.addEventListener("change", () => {
-  document.body.classList.toggle("dark-mode");
-  const colorFondo = getComputedStyle(document.documentElement)
+    localStorage.setItem("fuenteTexto",fuentetexto);
+  });
+  
+  
+  
+  
+  const toggle = document.getElementById("darkModeToggle");
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode");
+    const colorFondo = getComputedStyle(document.documentElement)
     .getPropertyValue("--fondo-main")
     .trim();
-
+    
   console.log(colorFondo);
   if (colorFondo == "#E6DED4") {
     document.documentElement.style.setProperty("--fondo-main", "#26221F");
   } else {
     document.documentElement.style.setProperty("--fondo-main", "#E6DED4");
   }
+  localStorage.setItem("colorFondo",colorFondo);
 });
 
 // Mostrar/ocultar menú
@@ -97,6 +99,7 @@ slider.addEventListener("input", () => {
   document.querySelector(".accessibility--example").style.fontSize =
     "calc(1rem + " + scale * 2 + "px)";
   valorDespues = scale;
+  
 });
 
 const buttonCerrarAccesbilidad = document.getElementById(
@@ -108,8 +111,9 @@ function cerrarAccesbilidad() {
     if (valorAntes != valorDespues) {
       valorAntes = valorDespues;
       document.documentElement.style.fontSize =
-        "calc(1rem + " + valorAntes * 2 + "px)";
+      "calc(1rem + " + valorAntes * 2 + "px)";
     }
+    localStorage.setItem("scale",(scale/2));
     menu.style.display = "none";
     modalAccesibilidadAbierto = false;
   } else {
@@ -127,6 +131,22 @@ button.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
+
+
+  let fuenteTipoLocal = localStorage.getItem("fuenteText");
+  let fuenteScaleLocal= localStorage.getItem("scale");
+  let fondoLocal= localStorage.getItem("colorFondo");
+
+
+
+  document.documentElement.style.setProperty("--fuente", fuenteTipoLocal);
+  document.documentElement.style.setProperty("--fondo-main", fondoLocal);
+  document.documentElement.style.fontSize =
+      "calc(1rem + " + fuenteScaleLocal * 2 + "px)";  
+
+
+
   const btnAbrirLogin = document.getElementById("button--iniciar--sesion");
   const modalLogin = document.querySelector(".modal__iniciar");
   const btnCerrarModalLogin = document.getElementById("cerrar--modal--iniciar");
