@@ -212,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // =========================
       // GUARDAR TOKEN Y USUARIO
       // =========================
+      console.log(data);
       localStorage.setItem("token", data.token);
       localStorage.setItem(
         "usuario",

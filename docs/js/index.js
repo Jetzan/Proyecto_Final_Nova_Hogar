@@ -102,7 +102,7 @@ function displayProducts(productos, categoryIndex) {
     grid.innerHTML = productosLimitados.map(producto => `
         <div class="producto--card" data-product-id="${producto.id}">
             <img class="mueble--img"
-     src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.png'}"
+     src="${producto.url_imagen?.trim() || 'assets/img/mueble1.png'}"
      alt="${producto.nombre}" />
             <p class="mueble--descripcion">${producto.nombre}</p>
             <p class="mueble--precio">$${parseFloat(producto.precio).toFixed(2)}</p>
@@ -136,14 +136,8 @@ const buttonSuscribirse = document.getElementById("button--suscribirse");
 
 buttonSuscribirse.addEventListener("click", () => {
   if (cuentaLogeada) {
-    Swal.fire({
-      title: "¡Suscripcion exitosa",
-      text: "Gracias por suscribirse",
-      icon: "succes",
-      confirmButtonText: "Aceptar",
-      timer: 3000,
-      timerProgressBar: true,
-    });
+    document.querySelector(".modal__suscribirse").style.display="none";
+    
   } else {
     Swal.fire({
       title: "Atención",
@@ -169,6 +163,8 @@ const formSuscripcion = document.querySelector(".form--suscripcion");
 const inputCorreo = document.getElementById("suscripcion--correo");
 
 formSuscripcion.addEventListener("submit", async (e) => {
+
+
   e.preventDefault();
 
   const correo = inputCorreo.value.trim();
@@ -193,7 +189,14 @@ formSuscripcion.addEventListener("submit", async (e) => {
     const data = await respuesta.json();
 
     if (data.success) {
-      alert("¡Suscripción exitosa! Revisa tu correo 🙂");
+      Swal.fire({
+      title: "¡Suscripcion exitosa",
+      text: "Gracias por suscribirse, Revisa tu Correo ",
+      icon: "succes",
+      confirmButtonText: "Aceptar",
+      timer: 3000,
+      timerProgressBar: true,
+    });
       inputCorreo.value = "";
     } else {
       alert("Hubo un problema: " + data.error);
