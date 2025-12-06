@@ -94,11 +94,13 @@ function displayProducts(productos, categoryIndex) {
     // Mostrar solo los primeros 3 productos
     const productosLimitados = productos.slice(0, 3);
     
-
+    productosLimitados.forEach(producto=>{
+      console.log(producto.url_imagen_principal);
+    });
     grid.innerHTML = productosLimitados.map(producto => `
         <div class="producto--card" data-product-id="${producto.id}">
             <img class="mueble--img"
-     src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.jpg'}"
+     src="${producto.url_imagen_principal?.trim() || 'assets/img/mueble1.png'}"
      alt="${producto.nombre}" />
             <p class="mueble--descripcion">${producto.nombre}</p>
             <p class="mueble--precio">$${parseFloat(producto.precio).toFixed(2)}</p>
