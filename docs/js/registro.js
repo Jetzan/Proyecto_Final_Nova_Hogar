@@ -146,35 +146,35 @@ formRegistro.addEventListener("submit", async (e) => {
         return;
     }
 
-    try {
-        const res = await fetch(`${API}/api/auth/captcha`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ recaptchaToken: token }) // NOMBRE IGUAL AL BACK
-        });
+    // try {
+    //     const res = await fetch(`${API}/api/auth/captcha`, {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({ recaptchaToken: token }) // NOMBRE IGUAL AL BACK
+    //     });
 
-        let data = {};
-        try {
-            data = await res.json();
-        } catch (_) {}
+    //     let data = {};
+    //     try {
+    //         data = await res.json();
+    //     } catch (_) {}
 
-        if (!res.ok) {
-            console.error("Error HTTP en captcha:", res.status, data);
-            Swal.fire("Error", data.responseDesc || "Error al validar el captcha", "error");
-            grecaptcha.reset();
-            return;
-        }
+    //     if (!res.ok) {
+    //         console.error("Error HTTP en captcha:", res.status, data);
+    //         Swal.fire("Error", data.responseDesc || "Error al validar el captcha", "error");
+    //         grecaptcha.reset();
+    //         return;
+    //     }
 
-        if (data.responseCode !== 0) {
-            Swal.fire("Error", data.responseDesc || "Captcha inválido", "error");
-            grecaptcha.reset();
-            return;
-        }
-    } catch (err) {
-        console.error("Error de conexión con captcha:", err);
-        Swal.fire("Error", "No se pudo validar el captcha", "error");
-        return;
-    }
+    //     if (data.responseCode !== 0) {
+    //         Swal.fire("Error", data.responseDesc || "Captcha inválido", "error");
+    //         grecaptcha.reset();
+    //         return;
+    //     }
+    // } catch (err) {
+    //     console.error("Error de conexión con captcha:", err);
+    //     Swal.fire("Error", "No se pudo validar el captcha", "error");
+    //     return;
+    // }
 
     // 2) Si el captcha fue correcto, registrar usuario
     try {
