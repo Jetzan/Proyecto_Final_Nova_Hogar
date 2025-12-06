@@ -1435,8 +1435,11 @@ justify-content: center;
     box-sizing: border-box;
     padding: 2rem;
     background-color: none;
-align-items: center;
+    align-items: center;
+    overflow: auto; 
 }
+
+
 
 .productoListado__title{
     font-family: "Aptos", Arial, Helvetica, sans-serif;   
@@ -1458,10 +1461,9 @@ align-items: center;
 
 }
 
-.productInfo__image{
+.productInfo__img{
     width: 9rem;
     height: 9rem;
-    border: solid red 1px;
 }
 
 .productInfo__infoName{
@@ -1491,6 +1493,9 @@ align-items: center;
     box-shadow: 0 1px 10px rgba(0,0,0,0.3);
 
 }
+
+
+
 
 .interfazPago__title{
     font-family: "Aptos", Arial, Helvetica, sans-serif;
