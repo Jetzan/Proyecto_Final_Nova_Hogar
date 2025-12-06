@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  document.getElementById("carrito--checkout").addEventListener("click",()=>{
+  document.querySelector(".carrito--checkout").addEventListener("click",()=>{
     window.location.href = "pago.html";
   });
 
