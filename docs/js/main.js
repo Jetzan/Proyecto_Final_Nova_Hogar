@@ -135,10 +135,12 @@ document.addEventListener("DOMContentLoaded", () => {
     textoNombre.textContent = userData.nombre;
 
     // Mostrar botón admin solo si rol = admin
-    if (userData.rol === "admin") {
-      btnPanelAdmin.style.display = "block";
-    } else {
-      btnPanelAdmin.style.display = "none";
+    if (btnPanelAdmin) {
+      if (userData.rol === "admin") {
+        btnPanelAdmin.style.display = "block";
+      } else {
+        btnPanelAdmin.style.display = "none";
+      }
     }
   }
 
@@ -214,6 +216,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // =========================
       console.log(data);
       localStorage.setItem("token", data.token);
+
+      console.log(data.userNombre+"-"+data.userTipo);
+      console.log(JSON.stringify({
+          nombre: data.userNombre,
+          rol: data.userTipo,
+        }));
+
       localStorage.setItem(
         "usuario",
         JSON.stringify({
@@ -279,8 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       item.innerHTML = `
                 <img src="${
-                  producto.url_imagen?.trim() ||
-                  "assets/img/mueble1.png"
+                  producto.url_imagen?.trim() || "assets/img/mueble1.png"
                 }"
      alt="${producto.nombre}"class="item--img" />
                 <div class="item--details">
