@@ -113,7 +113,6 @@ obtenerPaises();
 
 
 
-
 const formRegistro = document.getElementById("form--registro");
 
 formRegistro.addEventListener("submit", async (e) => {
@@ -122,7 +121,7 @@ formRegistro.addEventListener("submit", async (e) => {
     // Obtener valores del formulario
     const nombre = document.getElementById("input--nombre--registro").value.trim();
     const correo = document.getElementById("input--email--registro").value.trim();
-    const pais = document.getElementById("paises").value;
+    const pais   = document.getElementById("paises").value;
     const contra = document.getElementById("input--password--registro").value;
     const confirmar = document.getElementById("input--confirmar--password").value;
 
@@ -137,58 +136,56 @@ formRegistro.addEventListener("submit", async (e) => {
         return;
     }
 
-    // Crear objeto que se enviará al backend
-    const datos = {
-        nombre,
-        correo,
-        contra,
-        pais
-    };
+    // Objeto para el backend
+    const datos = { nombre, correo, contra, pais };
 
-
-    
+    // 1) Validar Captcha
     const token = grecaptcha.getResponse();
     if (!token) {
-        alert("Por favor valida el captcha.");
+        Swal.fire("Error", "Por favor valida el captcha.", "error");
         return;
     }
 
     try {
         const res = await fetch(`${API}/api/auth/captcha`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json" // IMPORTANTE
-            },
-            body: JSON.stringify({
-                recaptchaToken: token   // ← Solo se manda un string
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ recaptchaToken: token }) // NOMBRE IGUAL AL BACK
         });
 
-        const data = await res.json();
+        let data = {};
+        try {
+            data = await res.json();
+        } catch (_) {}
 
-        if (data.responseCode === 0) {
-            formAlta.reset();
+        if (!res.ok) {
+            console.error("Error HTTP en captcha:", res.status, data);
+            Swal.fire("Error", data.responseDesc || "Error al validar el captcha", "error");
             grecaptcha.reset();
+            return;
+        }
+
+        if (data.responseCode !== 0) {
+            Swal.fire("Error", data.responseDesc || "Captcha inválido", "error");
+            grecaptcha.reset();
+            return;
         }
     } catch (err) {
-        console.error("Error de conexión:", err);
+        console.error("Error de conexión con captcha:", err);
+        Swal.fire("Error", "No se pudo validar el captcha", "error");
         return;
-    
     }
 
+    // 2) Si el captcha fue correcto, registrar usuario
     try {
-      
-        const response = await fetch(API+"/api/auth/newUser", {
+        const response = await fetch(`${API}/api/auth/newUser`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(datos)
         });
 
         const data = await response.json();
 
-        // Si el servidor responde con error
         if (!response.ok) {
             Swal.fire("Error", data.mensaje || "Error al registrar usuario", "error");
             return;
@@ -196,13 +193,12 @@ formRegistro.addEventListener("submit", async (e) => {
 
         Swal.fire("Éxito", "Usuario registrado exitosamente", "success");
         formRegistro.reset();
-
+        grecaptcha.reset();
     } catch (error) {
-        console.error(error);
+        console.error("Error de conexión con el servidor:", error);
         Swal.fire("Error", "Error de conexión con el servidor", "error");
     }
 });
-
 
 
 
