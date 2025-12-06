@@ -1,15 +1,16 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 
 :root {
   --font-size: 16px; /* tamaño base */
   --fondo-main:#E6DED4;
+  --fuente : Arial;
 }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
 
 body {
   font-size: var(--font-size);
@@ -1179,7 +1180,6 @@ backdrop-filter: blur(40px);
     max-width: 1000px;
     width: 100%;
     
-    font-family: "Aptos", Arial, Helvetica, sans-serif; 
     font-size: 2rem;
 
     margin-left: 0px;
@@ -1291,14 +1291,12 @@ backdrop-filter: blur(40px);
 .card__text{
         margin-bottom: 10px;
         margin-top: 0px;
-        font-family: "Aptos", Arial, Helvetica, sans-serif;
         font-weight: 600;
         font-size: 1.5rem;
         color: #3A2416;
 }
 
 .card__text--Slim{
-    font-family: "Calibri", sans-serif;
     font-weight: 300;
     font-size: 1.30rem;
     color: #4a3f38;
@@ -1349,7 +1347,6 @@ backdrop-filter: blur(40px);
 }
 
 .ask__title{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     font-weight: 600;
     font-size: 2.3rem;
     margin-bottom: 1.5rem;
@@ -1369,7 +1366,6 @@ backdrop-filter: blur(40px);
 }
 /*texto de las preguntas*/
 .ask__question{
-    font-family: "Calibri", sans-serif;
     font-size: 1.5rem;
     font-weight: bolder;
     cursor: pointer;
@@ -1381,7 +1377,6 @@ backdrop-filter: blur(40px);
 }
 /*texto de las respuestas*/
 .ask__answer{
-    font-family: "Calibri", sans-serif;
     font-weight:lighter;
     font-size: 1.2rem;
     color: black;
@@ -1442,7 +1437,6 @@ justify-content: center;
 
 
 .productoListado__title{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;   
     font-weight: 300;
     font-size: 1.5rem;
 }
@@ -1477,13 +1471,11 @@ justify-content: center;
 }
 
 .productInfo__infoName{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     font-weight: 600;
     font-size: 1.11rem;
 }
 
 .productInfo__infoPrice{
-    font-family: "Calibri", sans-serif;
     font-size: 1.11rem;
     margin-top: 0;
 }
@@ -1508,7 +1500,6 @@ justify-content: center;
 
 
 .interfazPago__title{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     color: #2F1B10;
     font-size: 1.8rem;
     
@@ -1523,7 +1514,6 @@ justify-content: center;
 }
 
 .interfazPago__explain{
-    font-family: "Calibri", sans-serif; 
     width: 23rem;
     height: 4rem;
     margin-top: 0.5rem;
@@ -1536,7 +1526,6 @@ justify-content: center;
 .interfazPago__button{
     width: 20rem;
     height: 4rem;
-    font-family: "Calibri", sans-serif;
     margin-bottom: 2rem;
     font-size: 1.45rem;
     border: none; 
@@ -1600,7 +1589,6 @@ justify-content: center;
 
 .cardPayment__title,
 .transferPayment__title{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     font-size: 1.1rem;
     margin-top: 0;
     font-weight: 600;
@@ -1627,7 +1615,6 @@ justify-content: center;
 .transferPayment__text,
 .cardPayment__text{
     margin: 0;                   
-    font-family: "Calibri", sans-serif;
     font-size: 1.1rem;
     text-align: center;
     margin-bottom: 1rem;
@@ -1653,7 +1640,6 @@ justify-content: center;
     border-radius: 10px;
     background-color: #2B1C14;
     color: white;
-    font-family: "Calibri", sans-serif;
     font-weight: bold;
     margin-top: 1rem;             /* espacio extra arriba */
     cursor: pointer;
@@ -1694,7 +1680,6 @@ justify-content: center;
 }
 
 .oxxoPayment__advise{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     color: white;
     font-weight: 600;
     width: 19rem;
@@ -1702,8 +1687,6 @@ justify-content: center;
     margin: 0.5rem;
 }
 /*
-    font-family: "Calibri", sans-serif;
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
 */
 /*
     background-color: #1C1512;     color: #3A2416;
@@ -1841,12 +1824,10 @@ align-items: center;
 }
 
 .accessibility__title{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     font-size: 1.6rem;
 }
 
 .accessibility__label{
-    font-family: "Calibri", sans-serif;
     font-size: 1.5rem;
     align-self: flex-start; /* mueve a la izquierda */
     margin-left: 20px;
@@ -1887,7 +1868,6 @@ align-items: center;
 }
 
 .accessibility__icon{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
       font-weight: bold;
       color: #3A2416;
 
@@ -2044,7 +2024,6 @@ body.dark-mode .accessibility__label {
 }
 
 .suscribirse__text{
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
     color: white;
     margin: 1rem;
@@ -2095,6 +2074,4 @@ border-radius: 10px;
 
 
 /*
-    font-family: "Calibri", sans-serif;
-    font-family: "Aptos", Arial, Helvetica, sans-serif;
 */

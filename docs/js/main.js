@@ -49,6 +49,25 @@ function cerrarModalCarrito() {
 buttonCarrito.addEventListener("click", mostrarModalCarrito);
 buttonCerrarModalCarrito.addEventListener("click", cerrarModalCarrito);
 
+
+
+const toggleFont = document.getElementById("changeFont");
+toggleFont.addEventListener("change", ()=>{
+  const fuentetexto = getComputedStyle(document.documentElement)
+    .getPropertyValue("--fuente")
+    .trim();
+
+    console.log(fuentetexto);
+    if(fuentetexto == "Arial"){
+      document.documentElement.style.setProperty("--fuente", "Calibri");
+    }else{
+      document.documentElement.style.setProperty("--fuente", "Arial"); 
+    }
+});
+
+
+
+
 const toggle = document.getElementById("darkModeToggle");
 toggle.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode");
