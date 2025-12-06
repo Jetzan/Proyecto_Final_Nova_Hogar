@@ -153,9 +153,20 @@ document.addEventListener("DOMContentLoaded", () => {
         ✔ REVISAR SESIÓN AL CARGAR LA PÁGINA (LO QUE FALTABA)
     ---------------------------------------------------------- */
 
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
+    const btnCarrito = document.querySelector("#button--carrito");
+  const carritoDiv = document.querySelector(".modal__carrito");
+  const listaCarrito = document.querySelector(".carrito--items");
+  const totalCarrito = document.querySelector(".pago--total");
+  const btnCerrarCarrito = document.querySelector("#cerrar--modal--carrito");
+  const numeroArticulos = document.querySelector(".numero--articulos");
+  
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   
   
+
+
+
   
   function revisarSesionGuardada() {
     const sesion = localStorage.getItem("usuario");
@@ -275,12 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Sesión cerrada y carrito eliminado");
   });
 
-  const btnCarrito = document.querySelector("#button--carrito");
-  const carritoDiv = document.querySelector(".modal__carrito");
-  const listaCarrito = document.querySelector(".carrito--items");
-  const totalCarrito = document.querySelector(".pago--total");
-  const btnCerrarCarrito = document.querySelector("#cerrar--modal--carrito");
-  const numeroArticulos = document.querySelector(".numero--articulos");
+  
 
   // ============================
   //      CARGAR CARRITO
