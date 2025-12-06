@@ -260,8 +260,11 @@ document.addEventListener("DOMContentLoaded", () => {
        CERRAR SESIÓN
     ---------------------- */
   btnCerrarSesion.addEventListener("click", () => {
+    if(localStorage.getItem("carrito")){
+
+      localStorage.removeItem("carrito"); // Elimina el carrito
+    };
     localStorage.removeItem("usuario"); // Elimina la sesión
-    localStorage.removeItem("carrito"); // Elimina el carrito
     carrito = []; // Limpiar array en memoria
     renderCarrito(); // Actualiza la interfaz
     ocultarSesion();

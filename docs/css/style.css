@@ -2021,6 +2021,9 @@ body.dark-mode .accessibility__label {
 .modal__suscribirse form{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
 
 }
 
