@@ -113,7 +113,7 @@ function cerrarAccesbilidad() {
       document.documentElement.style.fontSize =
       "calc(1rem + " + valorAntes * 2 + "px)";
     }
-    localStorage.setItem("scale",(scale/2));
+    localStorage.setItem("scale",(valorAntes));
     menu.style.display = "none";
     modalAccesibilidadAbierto = false;
   } else {
