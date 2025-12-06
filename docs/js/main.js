@@ -282,19 +282,19 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(data);
       localStorage.setItem("token", data.token);
 
-      console.log(data.userNombre + "-" + data.userTipo);
+      console.log(data.nombre + "-" + data.tipo);
       console.log(
         JSON.stringify({
-          nombre: data.userNombre,
-          rol: data.userTipo,
+          nombre: data.nombre,
+          rol: data.tipo,
         })
       );
 
       localStorage.setItem(
         "usuario",
         JSON.stringify({
-          nombre: data.userNombre,
-          rol: data.userTipo,
+          nombre: data.nombre,
+          rol: data.tipo,
         })
       );
 
@@ -302,8 +302,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // MOSTRAR DATOS EN PANTALLA
       // =========================
       mostrarSesion({
-        nombre: data.userNombre,
-        rol: data.userTipo,
+        nombre: data.nombre,
+        rol: data.tipo,
       });
 
       // CERRAR MODAL
