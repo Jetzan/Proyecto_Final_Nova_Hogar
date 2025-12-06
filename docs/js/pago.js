@@ -97,18 +97,32 @@ async function cargarCarritoEnPago() {
 
         // Iterar sobre cada item del carrito
         for (const item of cart.items) {
-            let src = "";
-            if(item.url_imagen){
-                let id = item.c.id;
-                const imagenres = await fetch(`${API_URL}/products/${id}/image`);
-                src = imagenres.json();
-            } else{
-                src = "";
-            }
+            let imgSrc = ""; // valor por defecto por si no hay imagen
+
+            let prodId = item.c.id;
+
+            do{
+              let ban = false;
+              try {
+                const imgRes = await fetch(`${API_URL}/products/all`);
+                const imgData = await imgRes.json();
+                imgData.forEach(prod => {
+                  if(prod.id === prodId){
+                    src = prod.url_imagen;
+                    ban = true;
+                  } else{
+                    ban = false;
+                  }
+                });
+              } catch (imgError) {
+                  console.error(`Error cargando imagen del producto ${item.id}:`, imgError);
+              }
+            } while(!ban);
+
             // Crear bloque HTML por cada producto
             const itemHTML = `
                 <div class="productInfo__item">
-                    <img src="${src}" alt="Producto" class="productInfo__img">
+                    <img src="${imgSrc}" alt="${item.nombre}" class="productInfo__img">
                     <p class="productInfo__infoName">${item.nombre}</p>
                     <p class="productInfo__infoPrice">$${item.precio}</p>
                 </div>
