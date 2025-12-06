@@ -371,27 +371,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-const buttonSuscribirse = document.getElementById("button--suscribirse");
-
-buttonSuscribirse.addEventListener("click", () => {
-  if (cuentaLogeada) {
-    Swal.fire({
-      title: "¡Suscripcion exitosa",
-      text: "Gracias por suscribirse",
-      icon: "succes",
-      confirmButtonText: "Aceptar",
-      timer: 3000,
-      timerProgressBar: true,
-    });
-  } else {
-    Swal.fire({
-      title: "Atención",
-      text: "Debes iniciar sesion para suscribirte",
-      icon: "warning",
-      confirmButtonText: "Aceptar",
-      timer: 3000,
-      timerProgressBar: true,
-    });
-  }
-});
