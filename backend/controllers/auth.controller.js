@@ -1,193 +1,194 @@
+// controllers/auth.controller.js
 const bcrypt = require('bcryptjs');
 const https = require('https');
 const { generateToken } = require('../middleware/jwt.middleware');
-const UserModel = require('../models/UserModel');
+const UserModel = require('../models/UserModel'); 
 const { enviarCorreoReset } = require('../utils/emailService');
 const crypto = require('crypto');
 const PasswordResetModel = require('../models/PasswordResetModel');
 
-// Mapa para control de intentos fallidos: { nombre: { intentos, bloqueadoHasta } }
-const loginAttempts = new Map();
+// Requerimientos de reCAPTCHA
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
 
+// POST /api/auth/login
 exports.login = async (req, res) => {
     const { nombre, password } = req.body;
-    console.log(nombre+","+password);
 
     if (!nombre || !password) {
         return res.status(400).json({
             error: "Faltan campos obligatorios: 'nombre' y 'password'."
         });
     }
-
-    // Verificar si la cuenta está bloqueada
-    const attemptData = loginAttempts.get(nombre);
-    if (attemptData && attemptData.bloqueadoHasta > Date.now()) {
-        const minutosRestantes = Math.ceil((attemptData.bloqueadoHasta - Date.now()) / 60000);
-        return res.status(403).json({ 
-            error: "Cuenta bloqueada por intentos fallidos",
-            mensaje: `Intenta nuevamente en ${minutosRestantes} minuto(s)`
-        });
+    
+    const user = await UserModel.getUserForLogin(nombre);
+    
+    if (user) {
+        const lockoutTime = user.bloqueo_hasta ? new Date(user.bloqueo_hasta).getTime() : 0;
+        if (lockoutTime > Date.now()) {
+            const minutosRestantes = Math.ceil((lockoutTime - Date.now()) / 60000);
+            return res.status(403).json({ 
+                error: "Cuenta bloqueada por intentos fallidos",
+                mensaje: `Intenta nuevamente en ${minutosRestantes} minuto(s)`
+            });
+        }
     }
 
-    const user = await UserModel.getUserForLogin(nombre);
-
-
-    console.log(user);
-
     if (!user) {
-        registrarIntentoFallido(nombre);
         return res.status(401).json({ error: "Credenciales inválidas" });
     }
 
-    // Verificar contraseña hasheada
-    const passwordMatch = await bcrypt.compare(password, user.passwd);
-    console.log(password+","+user.passwd);
-    console.log(passwordMatch);
-    if (!passwordMatch) {
-        registrarIntentoFallido(nombre);
-        const intentos = loginAttempts.get(nombre)?.intentos || 0;
-        if (intentos >= 3) {
-            return res.status(403).json({ 
-                error: "Cuenta bloqueada por 5 minutos debido a múltiples intentos fallidos"
-            });
-        }
-        return res.status(401).json({ 
-            error: "Credenciales inválidas",
-            intentosRestantes: 3 - intentos
-        });
+    const isMatch = await bcrypt.compare(password, user.passwd);
+
+    if (!isMatch) {
+        // Registrar intento fallido
+        await UserModel.incrementLoginAttempts(nombre); 
+        return res.status(401).json({ error: "Credenciales inválidas" });
     }
 
-    // Login exitoso - limpiar intentos
-    loginAttempts.delete(nombre);
+    // Restablecer intentos al iniciar sesión correctamente
+    await UserModel.resetLoginAttempts(nombre);
 
     const token = generateToken(user.id, user.nombre, user.tipo);
-    
-    console.log(`[LOGIN] Usuario: ${nombre} | Tipo: ${user.tipo}`);
 
-    return res.status(200).json({
-        mensaje: "Acceso permitido",
-        usuario: nombre,
-        token: token,
-        tipo: user.tipo
+    res.json({
+        token,
+        userId: user.id,
+        nombre: user.nombre,
+        tipo: user.tipo,
+        correo: user.correo,
+        mensaje: "Inicio de sesión exitoso"
     });
 };
 
-function registrarIntentoFallido(nombre) {
-    const data = loginAttempts.get(nombre) || { intentos: 0, bloqueadoHasta: 0 };
-    data.intentos++;
-    
-    if (data.intentos >= 3) {
-        // Bloquear por 5 minutos
-        data.bloqueadoHasta = Date.now() + (5 * 60 * 1000);
-        console.log(`[SEGURIDAD] Cuenta ${nombre} bloqueada por 5 minutos`);
-    }
-    
-    loginAttempts.set(nombre, data);
-}
-
+// POST /api/auth/logout - Implementación de logout básico con invalidación en el cliente
 exports.logout = (req, res) => {
-    console.log(`[LOGOUT] Usuario: ${req.userNombre}`);
-    return res.status(200).json({ mensaje: "Sesión cerrada correctamente" });
+    // En un sistema JWT stateless, el logout es un mensaje al cliente para eliminar el token.
+    // Opcionalmente, se podría añadir el token a una 'blacklist' en el servidor (no implementado aquí).
+    res.json({ mensaje: "Sesión cerrada. Por favor, elimina el token de tu almacenamiento." });
 };
 
-exports.createUser = async (req, res) => {
-    try {
-        const { nombre, correo, contra, pais } = req.body;
-
-        if (!nombre || !correo || !contra || !pais) {
-            return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
-        }
-
-        const existe = await UserModel.getUserByCorreo(correo);
-        if (existe) {
-            return res.status(409).json({ 
-                mensaje: 'Ya existe una cuenta asociada al correo indicado' 
-            });
-        }
-
-        // Hashear contraseña
-        const hashedPassword = await bcrypt.hash(contra, 10);
-        
-        const id_insertado = await UserModel.createUser(nombre, correo, hashedPassword, pais);
-        
-        res.status(201).json({ 
-            mensaje: 'Usuario registrado exitosamente', 
-            id_insertado 
-        });
-    } catch (error) {
-        console.error('Error al registrar usuario:', error);
-        res.status(500).json({ mensaje: 'Error al registrar usuario' });
-    }
-};
-
-exports.checkCaptcha = async (req, res) => {
-    const token = req.body.recaptchaToken;
+// POST /api/auth/captcha - Verifica el token de reCAPTCHA
+exports.checkCaptcha = (req, res) => {
+    const { token } = req.body;
 
     if (!token) {
-        return res.json({
-            responseCode: 1,
-            responseDesc: "Token de reCAPTCHA faltante."
-        });
+        return res.status(400).json({ success: false, error: "Token de reCAPTCHA requerido" });
     }
 
-    const secretKey = "6LfwEg8sAAAAAJi1stSneik-3Xl0ymHoXfWU_ulW";
+    const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${token}`;
 
-    const verificationUrl = 
-        `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
-
-    https.get(verificationUrl, (googleRes) => {
-        let body = "";
-        googleRes.on("data", (chunk) => { body += chunk; });
-        googleRes.on("end", () => {
-            const googleResponse = JSON.parse(body);
-
-            if (!googleResponse.success) {
-                return res.json({
-                    responseCode: 1,
-                    responseDesc: "Falló la verificación del captcha"
-                });
-            }
-
-            res.json({
-                responseCode: 0,
-                responseDesc: "Captcha correcto"
-            });
+    https.get(verificationURL, (response) => {
+        let data = '';
+        response.on('data', (chunk) => {
+            data += chunk;
         });
+
+        response.on('end', () => {
+            try {
+                const captchaResponse = JSON.parse(data);
+                if (captchaResponse.success && captchaResponse.score > 0.5) { // Ajusta el score según tu necesidad
+                    res.json({ success: true, mensaje: "reCAPTCHA verificado con éxito" });
+                } else {
+                    res.status(403).json({ success: false, error: "Fallo en la verificación de reCAPTCHA o score bajo" });
+                }
+            } catch (e) {
+                console.error("Error al parsear respuesta de reCAPTCHA:", e);
+                res.status(500).json({ success: false, error: "Error interno en la verificación" });
+            }
+        });
+    }).on('error', (err) => {
+        console.error("Error de conexión con reCAPTCHA:", err);
+        res.status(500).json({ success: false, error: "Error de conexión con el servicio de reCAPTCHA" });
     });
+};
+
+// POST /api/auth/newUser
+exports.createUser = async (req, res) => {
+    try {
+        const { nombre, correo, password, pais, tipo } = req.body;
+
+        if (!nombre || !correo || !password || !pais) {
+            return res.status(400).json({ error: 'Faltan datos obligatorios' });
+        }
+        
+        // Validación básica de contraseña (opcional pero recomendado)
+        if (password.length < 8) {
+            return res.status(400).json({ error: 'La contraseña debe tener al menos 8 caracteres' });
+        }
+
+        // 1. Verificar si el correo ya existe
+        const existingUser = await UserModel.getUserByCorreo(correo);
+        if (existingUser) {
+            return res.status(409).json({ error: 'El correo ya está registrado' });
+        }
+
+        // 2. Encriptar contraseña
+        const contraseñaHash = await bcrypt.hash(password, 10);
+
+        // 3. Crear usuario
+        const id_insertado = await UserModel.createUser(nombre, correo, contraseñaHash, pais, tipo);
+
+        // 4. Generar token de sesión
+        const token = generateToken(id_insertado, nombre, tipo || 'cliente');
+
+        res.status(201).json({ 
+            mensaje: 'Usuario registrado con éxito',
+            id: id_insertado,
+            token,
+            nombre,
+            tipo: tipo || 'cliente'
+        });
+
+    } catch (error) {
+        console.error('Error en createUser:', error);
+        res.status(500).json({ error: 'Error al registrar nuevo usuario' });
+    }
 };
 
 // POST /api/auth/forgot-password
 exports.forgotPassword = async (req, res) => {
     try {
         const { correo } = req.body;
-        if (!correo) return res.status(400).json({ error: 'Correo requerido' });
+        if (!correo) {
+            return res.status(400).json({ error: 'Correo es obligatorio' });
+        }
 
-        const usuario = await UserModel.getUserByCorreo(correo);
-        if (!usuario) return res.status(404).json({ error: 'Correo no registrado' });
+        const user = await UserModel.getUserByCorreo(correo);
 
-        const token = crypto.randomBytes(24).toString('hex');
-                const expiresAt = Date.now() + (60 * 60 * 1000); // 1 hora (ms since epoch)
+        // Seguridad: siempre devolver mensaje genérico para no revelar si el correo existe
+        if (!user) {
+             return res.json({ 
+                mensaje: 'Si el correo existe, se enviará un enlace de recuperación.'
+            });
+        }
+        
+        // Generar token único (ej: 32 bytes en base64URL)
+        const token = crypto.randomBytes(32).toString('hex');
+        
+        // Establecer expiración (ej: 1 hora)
+        const expiresAt = new Date(Date.now() + 60 * 60 * 1000); 
 
-                // Eliminar tokens previos del usuario y guardar el nuevo en BD
-                await PasswordResetModel.deleteByUserId(usuario.id);
-                await PasswordResetModel.createToken(token, usuario.id, expiresAt);
+        // Limpiar tokens anteriores
+        await PasswordResetModel.deleteByUserId(user.id);
+        
+        // Guardar nuevo token en la BD
+        await PasswordResetModel.createToken(token, user.id, expiresAt);
 
-                // Enviar correo con enlace de reseteo
-                try {
-                    await enviarCorreoReset(correo, usuario.nombre || correo, token);
-                } catch (err) {
-                    console.error('Error enviando correo de reset:', err.message || err);
-                }
+        // Construir URL de reseteo para el frontend (ASUNCIÓN: La URL del frontend está en una variable de entorno)
+        const resetURL = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
 
-                // Para facilitar pruebas en Postman en desarrollo, devuelve el token si la variable de entorno lo permite
-                if (process.env.RETURN_RESET_TOKEN === 'true') {
-                    return res.json({ mensaje: 'Correo de recuperación enviado', token });
-                }
+        // Enviar correo
+        const nombreUsuario = user.nombre || 'Estimado Cliente';
+        await enviarCorreoReset(correo, nombreUsuario, resetURL);
 
-                return res.json({ mensaje: 'Correo de recuperación enviado' });
+        res.json({ 
+            mensaje: 'Si el correo existe, se enviará un enlace de recuperación.',
+            success: true
+        });
+
     } catch (error) {
         console.error('Error en forgotPassword:', error);
-        return res.status(500).json({ error: 'Error interno' });
+        res.status(500).json({ error: 'Error al solicitar recuperación de contraseña' });
     }
 };
 
@@ -195,27 +196,50 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
     try {
         const { token, nuevaPassword } = req.body;
-        if (!token || !nuevaPassword) return res.status(400).json({ error: 'Token y nuevaPassword son requeridos' });
+        
+        if (!token || !nuevaPassword) {
+            return res.status(400).json({ error: 'Token y nuevaPassword son obligatorios' });
+        }
+        
+        // Validación básica de contraseña (opcional pero recomendado)
+        if (nuevaPassword.length < 8) {
+            return res.status(400).json({ 
+                error: 'La contraseña debe tener al menos 8 caracteres' 
+            });
+        }
+        
         const entry = await PasswordResetModel.findByToken(token);
-        if (!entry) return res.status(400).json({ error: 'Token inválido o expirado' });
-        if (entry.expires_at < Date.now()) {
+        if (!entry) {
+            return res.status(400).json({ 
+                error: 'Token inválido o expirado. Solicita un nuevo enlace.' 
+            });
+        }
+
+        if (new Date(entry.expires_at).getTime() < Date.now()) {
             await PasswordResetModel.deleteByToken(token);
-            return res.status(400).json({ error: 'Token expirado' });
+            return res.status(400).json({ 
+                error: 'Token expirado. Solicita un nuevo enlace de recuperación.' 
+            });
         }
 
         const hashed = await bcrypt.hash(nuevaPassword, 10);
         const updated = await UserModel.updatePassword(entry.user_id, hashed);
 
-        // Consumir token
         await PasswordResetModel.deleteByToken(token);
 
-        if (updated === 0) return res.status(500).json({ error: 'No se pudo actualizar la contraseña' });
+        if (updated === 0) {
+            return res.status(500).json({ 
+                error: 'No se pudo actualizar la contraseña. Contacta al soporte.' 
+            });
+        }
 
-        return res.json({ mensaje: 'Contraseña actualizada correctamente' });
+        return res.json({ 
+            mensaje: 'Contraseña actualizada con éxito. Ya puedes iniciar sesión.',
+            success: true
+        });
+        
     } catch (error) {
         console.error('Error en resetPassword:', error);
-        return res.status(500).json({ error: 'Error interno' });
+        res.status(500).json({ error: 'Error interno al procesar el reseteo' });
     }
 };
-
-

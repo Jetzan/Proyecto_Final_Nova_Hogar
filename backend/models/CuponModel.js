@@ -20,8 +20,16 @@ async function createCoupon(codigo, descuento) {
 
     return result.insertId;
 }
+// NUEVA FUNCIÓN: Marcar cupón como usado (desactivándolo)
+async function markCouponAsUsed(couponId) {
+    const [result] = await pool.query(`
+        UPDATE cupones SET activo = FALSE WHERE id = ?
+    `, [couponId]);
 
-// Desactivar cupón
+    return result.affectedRows;
+}
+
+// Desactivar cupón (manteniendo por compatibilidad de la función original)
 async function deactivateCoupon(codigo) {
     const [result] = await pool.query(`
         UPDATE cupones SET activo = FALSE WHERE codigo = ?
@@ -41,15 +49,15 @@ async function deleteCoupon(codigo) {
 
 // Obtener todos los cupones
 async function getAllCoupons() {
-    const [rows] = await pool.query(`
-        SELECT * FROM cupones ORDER BY fecha_creacion DESC
-    `);
+    const [rows] = await pool.query('SELECT * FROM cupones');
     return rows;
 }
+
 
 module.exports = {
     validateCoupon,
     createCoupon,
+    markCouponAsUsed, // Exportar nueva función
     deactivateCoupon,
     deleteCoupon,
     getAllCoupons

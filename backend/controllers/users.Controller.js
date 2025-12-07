@@ -1,69 +1,72 @@
-// controllers/booksController.js
-const UserModel = require('../model/UserModel');
+const UserModel = require('../models/UserModel'); 
 
-// GET /api/books
-const getBooks = async (req, res) => {
+// GET /api/users
+const getUsers = async (req, res) => {
     try {
-        const books = await BookModel.getAllBooks();
-        res.json(books);
+        const users = await UserModel.getAllUsers();
+        res.json(users);
     } catch (error) {
-        console.error('Error al obtener libros:', error);
-        res.status(500).json({ mensaje: 'Error al obtener libros' });
+        console.error('Error al obtener usuarios:', error);
+        res.status(500).json({ mensaje: 'Error al obtener usuarios' });
     }
 };
 
-// GET /api/books/:id
-const getBookById = async (req, res) => {
+// GET /api/users/:id
+const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
-        const book = await BookModel.getBookById(id);
+        const user = await UserModel.getUserById(id);
 
-        if (!book)
-            return res.status(404).json({ mensaje: 'Libro no encontrado' });
+        if (!user)
+            return res.status(404).json({ mensaje: 'Usuario no encontrado' });
 
-        res.json(book);
+        res.json(user);
     } catch (error) {
-        console.error('Error al obtener libro:', error);
-        res.status(500).json({ mensaje: 'Error al obtener libro' });
+        console.error('Error al obtener usuario:', error);
+        res.status(500).json({ mensaje: 'Error al obtener usuario' });
     }
 };
 
-// PUT /api/books/:id
-const updateBook = async (req, res) => {
+// PUT /api/users/:id - Actualizar detalles de usuario
+const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, autor } = req.body;
-        const filas = await BookModel.updateBook(id, title, autor);
+        // Asumiendo que el body trae 'nombre', 'correo', 'pais' para actualizar
+        const { nombre, correo, pais } = req.body;
+
+        // **ASUNCIÓN:** Este método debe existir en tu UserModel.js
+        const filas = await UserModel.updateUserDetails(id, nombre, correo, pais);
 
         if (filas === 0)
-            return res.status(404).json({ mensaje: 'Libro no encontrado' });
+            return res.status(404).json({ mensaje: 'Usuario no encontrado o no hubo cambios' });
 
-        res.json({ mensaje: 'Libro actualizado correctamente' });
+        res.json({ mensaje: 'Usuario actualizado correctamente' });
     } catch (error) {
-        console.error('Error al actualizar libro:', error);
-        res.status(500).json({ mensaje: 'Error al actualizar libro' });
+        console.error('Error al actualizar usuario:', error);
+        res.status(500).json({ mensaje: 'Error al actualizar usuario' });
     }
 };
 
-// DELETE /api/books/:id
-const deleteBook = async (req, res) => {
+// DELETE /api/users/:id
+const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const filas = await BookModel.deleteBook(id);
+        const filas = await UserModel.deleteUser(id);
 
         if (filas === 0)
-            return res.status(404).json({ mensaje: 'Libro no encontrado' });
+            return res.status(404).json({ mensaje: 'Usuario no encontrado' });
 
-        res.json({ mensaje: 'Libro eliminado correctamente' });
+        res.json({ mensaje: 'Usuario eliminado correctamente' });
     } catch (error) {
-        console.error('Error al eliminar libro:', error);
-        res.status(500).json({ mensaje: 'Error al eliminar libro' });
+        console.error('Error al eliminar usuario:', error);
+        res.status(500).json({ mensaje: 'Error al eliminar usuario' });
     }
 };
 
+// Exportaciones
 module.exports = {
-    getBooks,
-    getBookById,
-    updateBook,
-    deleteBook
+    getUsers,
+    getUserById,
+    updateUser,
+    deleteUser
 };

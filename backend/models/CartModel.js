@@ -10,7 +10,9 @@ async function getCartByUserId(userId) {
             p.nombre,
             p.precio,
             p.stockAC,
-            (c.cantidad * p.precio) as subtotal
+            p.cat,
+            (c.cantidad * p.precio) as subtotal,  -- ⚠️ Coma agregada aquí
+            p.url_imagen_principal
         FROM carrito c
         INNER JOIN productos p ON c.producto_id = p.id
         WHERE c.usuario_id = ?
@@ -63,8 +65,9 @@ async function removeFromCart(userId, productId) {
 }
 
 // Vaciar carrito completo del usuario
-async function clearCart(userId) {
-    const [result] = await pool.query(
+async function clearCart(connOrPool, userId) {
+    const conn = connOrPool.query ? connOrPool : pool;
+    const [result] = await conn.query(
         'DELETE FROM carrito WHERE usuario_id = ?',
         [userId]
     );
@@ -77,4 +80,6 @@ module.exports = {
     updateCartQuantity,
     removeFromCart,
     clearCart
+
 };
+
